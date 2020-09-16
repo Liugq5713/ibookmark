@@ -16,9 +16,13 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "styled-components": "^5.2.0",
+    "tailwindcss": "^1.8.10",
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "build:styles": "postcss src/tailwind.css -o src/styles.css",
+    "prebuild": "yarn build:styles",
+    "prestart": "yarn build:styles",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,7 +45,9 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.123",
-    "babel-plugin-import": "^1.13.0"
+    "autoprefixer": "^10.0.0",
+    "babel-plugin-import": "^1.13.0",
+    "postcss-cli": "^7.1.2"
   },
   "babel": {
     "plugins": [

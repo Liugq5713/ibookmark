@@ -1,8 +1,10 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
-import { Button, Divider, Form, Input, message, Modal } from "antd";
+import { Button, Divider, Form, Input, message, Modal, Typography } from "antd";
 import styled from "styled-components";
 import { PlusOutlined } from "@ant-design/icons";
 import Bookmark from "../../services/bookmark";
+
+const { Title } = Typography;
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
@@ -57,8 +59,10 @@ const Bookmarks: React.FC = () => {
       if (bm.children) {
         return (
           <>
-            <BookmarkItem bm={bm} level={level} onAdd={onAdd} />
-            {renderBookmarks(bm.children, level + 1)}
+            <ContentWrapper level={level}>
+              <BookmarkItem bm={bm} onAdd={onAdd}></BookmarkItem>
+              {renderBookmarks(bm.children, level + 1)}
+            </ContentWrapper>
           </>
         );
       } else {
@@ -69,6 +73,9 @@ const Bookmarks: React.FC = () => {
 
   return (
     <>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        My Tailwind Button
+      </button>
       <Modal
         title={`${parentNode?.title} 添加子书签`}
         visible={visible}
@@ -102,13 +109,13 @@ const Bookmarks: React.FC = () => {
 export default Bookmarks;
 
 const BookmarkItem: React.FC<{
-  level: number;
+  level?: number;
   bm: BookmarkTreeNode;
   onAdd(parent: BookmarkTreeNode): void;
 }> = ({ level, bm, onAdd }) => {
   if (bm.url) {
     return (
-      <Content level={level}>
+      <Content>
         <a href={bm.url}>{bm.title || bm.url}</a>
         <Opt
           size="small"
@@ -117,21 +124,40 @@ const BookmarkItem: React.FC<{
         ></Opt>
       </Content>
     );
-  } else {
+  }
+
+  if (bm.title) {
     return (
       <>
-        <Title>{bm.title || bm.url}</Title>
+        <Header level={level!} className="flex">
+          <Title level={3}>{bm.title}</Title>
+          <Opt
+            size="small"
+            icon={<PlusOutlined />}
+            onClick={() => onAdd(bm)}
+          ></Opt>
+        </Header>
         <Divider />
       </>
     );
   }
+  return null;
 };
 
-const Title = styled.h2``;
-
-const Content = styled.div<{ level: number }>`
+const Header = styled.div<{ level: number }>`
+  color: hsla(0, 0%, 100%, 0.85);
+  font-weight: 500;
   margin-left: ${(props) => props.level * 16}px;
-  padding-left: ${(props) => props.level * 16}px;
+`;
+
+const Content = styled.div`
+  display: inline-block;
+  width: 320px;
+`;
+
+const ContentWrapper = styled.div<{ level: number }>`
+  margin-left: ${(props) => props.level * 16}px;
+  margin-bottom: 32px;
 `;
 
 const Opt = styled(Button)`
@@ -139,7 +165,7 @@ const Opt = styled(Button)`
   ${Content}:hover & {
     visibility: visible;
   }
-  ${Title}:hover & {
+  ${Header}:hover & {
     visibility: visible;
   }
 `;
