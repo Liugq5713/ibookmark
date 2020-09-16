@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button } from "antd";
+import { Divider, Typography, Button, Card } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-
 const { Title } = Typography;
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
@@ -15,12 +14,14 @@ const BookmarkNode: React.FC<{
   if (bm.url) {
     return (
       <Content>
-        <a href={bm.url}>{bm.title || bm.url}</a>
-        <Opt
-          size="small"
-          icon={<PlusOutlined />}
-          onClick={() => onAdd(bm)}
-        ></Opt>
+        <Card hoverable={true}>
+          <a href={bm.url}>{bm.title || bm.url}</a>
+          <Opt
+            size="small"
+            icon={<PlusOutlined />}
+            onClick={() => onAdd(bm)}
+          ></Opt>
+        </Card>
       </Content>
     );
   }
