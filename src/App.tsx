@@ -1,12 +1,15 @@
 import React from "react";
-import "./App.css";
+
+import { ConfigProvider } from "antd";
 import Home from "./views/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <ConfigProvider>
+      <div className="App">
+        <Home />
+      </div>
+    </ConfigProvider>
   );
 }
 
