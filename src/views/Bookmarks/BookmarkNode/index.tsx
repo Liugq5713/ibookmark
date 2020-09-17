@@ -15,7 +15,9 @@ const BookmarkNode: React.FC<{
     return (
       <Content>
         <Card hoverable={true}>
-          <a href={bm.url}>{bm.title || bm.url}</a>
+          <Text title={bm.url} href={bm.url}>
+            {bm.title || bm.url}
+          </Text>
           <Opt
             size="small"
             icon={<PlusOutlined />}
@@ -47,6 +49,7 @@ const BookmarkNode: React.FC<{
 export default BookmarkNode;
 
 const Header = styled.div<{ level: number }>`
+  position: relative;
   color: hsla(0, 0%, 100%, 0.85);
   font-weight: 500;
   margin-left: ${(props) => props.level * 16}px;
@@ -57,12 +60,24 @@ const Content = styled.div`
   width: 320px;
 `;
 
+const Text = styled.a`
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const Opt = styled(Button)`
-  visibility: hidden;
+  display: none;
+  position: absolute;
+  top: 0;
+  margin: auto;
+  bottom: 0;
   ${Content}:hover & {
-    visibility: visible;
+    display: block;
   }
   ${Header}:hover & {
-    visibility: visible;
+    display: block;
   }
 `;
