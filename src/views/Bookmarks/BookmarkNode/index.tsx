@@ -18,7 +18,7 @@ const BookmarkNode: React.FC<{
     return (
       <Content>
         <CardWrapper hoverable={true}>
-          <div className="flex items-center" style={{ height: 40 }}>
+          <div className="flex items-center">
             <FAvatar size={24} className="mr-4 position" src={bm.url} />
             <Text className="ml-8" title={bm.url} href={bm.url}>
               {bm.title || bm.url}
