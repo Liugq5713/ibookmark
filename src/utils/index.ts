@@ -3,7 +3,7 @@ export const getFavicon = (path: string) => {
   return `${url.origin}/favicon.ico`;
 };
 
-export const validImage = (url) => {
+export const validImage = (url: string) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = url;
