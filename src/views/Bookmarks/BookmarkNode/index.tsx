@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Divider, Typography, Button, Card, Dropdown, Menu } from "antd";
-import {
-  PlusOutlined,
-  DeleteOutlined,
-  EyeOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import FAvatar from "../../../components/FAvatar";
 
 const { Title } = Typography;
@@ -22,7 +17,7 @@ const BookmarkNode: React.FC<{
   if (bm.url) {
     return (
       <Content>
-        <Card hoverable={true}>
+        <Card hoverable={true} className="p-2">
           <div className="flex items-center">
             <FAvatar size={24} className="mr-4" src={bm.url} />
             <Text title={bm.url} href={bm.url}>
@@ -34,16 +29,6 @@ const BookmarkNode: React.FC<{
               onClick={() => onAdd(bm)}
               overlay={
                 <Menu>
-                  <Menu.Item
-                    key="1"
-                    icon={<EyeOutlined />}
-                    onClick={() => window.open(bm.url, "_blank")}
-                  ></Menu.Item>
-                  <Menu.Item
-                    key="2"
-                    icon={<PlusOutlined />}
-                    onClick={() => onAdd(bm)}
-                  ></Menu.Item>
                   <Menu.Item key="3" icon={<EditOutlined />}></Menu.Item>
                   <Menu.Item
                     key="4"
