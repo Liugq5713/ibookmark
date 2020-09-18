@@ -37,9 +37,9 @@ const BookmarkNode: React.FC<{
     return (
       <Content>
         <Card hoverable={true}>
-          <div className="flex">
+          <div className="flex items-center">
             {url && (
-              <Avatar size={32} className="mr-4" src={getFavicon(bm.url)} />
+              <Avatar size={24} className="mr-4" src={getFavicon(bm.url)} />
             )}
             <Text title={bm.url} href={bm.url}>
               {bm.title || bm.url}
@@ -91,7 +91,7 @@ const Content = styled.div`
 
 const Text = styled.a`
   width: 100%;
-  height: 32px;
+  height: 24px;
   display: block;
   white-space: nowrap;
   overflow: hidden;
