@@ -17,7 +17,7 @@ const BookmarkNode: React.FC<{
   if (bm.url) {
     return (
       <Content>
-        <Card hoverable={true} className="p-2">
+        <CardWrapper hoverable={true}>
           <div className="flex items-center">
             <FAvatar size={24} className="mr-4" src={bm.url} />
             <Text title={bm.url} href={bm.url}>
@@ -41,7 +41,7 @@ const BookmarkNode: React.FC<{
               <PlusOutlined />
             </Dropdown.Button>
           </OptWrapper>
-        </Card>
+        </CardWrapper>
       </Content>
     );
   }
@@ -63,6 +63,10 @@ const BookmarkNode: React.FC<{
 };
 
 export default BookmarkNode;
+
+export const CardWrapper = styled(Card)`
+  padding: 8px !important;
+`;
 
 const Header = styled.div<{ level: number }>`
   position: relative;
