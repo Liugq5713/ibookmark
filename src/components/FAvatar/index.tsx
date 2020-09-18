@@ -1,7 +1,7 @@
 import { Avatar } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { getFavicon, validImage } from "../../utils";
-
+import { StarOutlined } from "@ant-design/icons";
 type Props = {
   src: string;
   [idx: string]: any;
@@ -25,8 +25,10 @@ const FAvatar: React.FC<Props> = ({ src, ...restProps }) => {
   }, [getUrl]);
 
   return url ? (
-    <Avatar size={24} className="mr-4" src={getFavicon(url)} />
-  ) : null;
+    <Avatar {...restProps} className="mr-4" src={getFavicon(url)} />
+  ) : (
+    <Avatar {...restProps} icon={<StarOutlined />} />
+  );
 };
 
 export default FAvatar;
