@@ -1,7 +1,7 @@
 import { PageHeader } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import Bookmark from "../../services/bookmark";
-
+import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
@@ -23,10 +23,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <PageHeader
-        className="site-page-header"
-        title={process.env.REACT_APP_CURRENT_GIT_SHA}
-      />
+      <PageHeader className="site-page-header" title={appInfo.version} />
       <Bookmarks bookmarks={bookmarks} />
     </>
   );
