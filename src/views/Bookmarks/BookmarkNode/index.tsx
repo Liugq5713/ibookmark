@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card } from "antd";
+import { Divider, Typography, Button, Card, Dropdown } from "antd";
 import {
   PlusOutlined,
   DeleteOutlined,
@@ -29,15 +29,22 @@ const BookmarkNode: React.FC<{
               {bm.title || bm.url}
             </Text>
           </div>
-          <OptWrapper className="space-x-4">
-            <Opt
-              onClick={() => window.open(bm.url, "_blank")}
-              icon={<EyeOutlined />}
-            />
-            <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
-            <Opt icon={<EditOutlined />} onClick={() => onAdd(bm)} />
-            <Opt icon={<DeleteOutlined />} onClick={() => onAdd(bm)}></Opt>
-          </OptWrapper>
+          <Dropdown.Button
+            onClick={() => onAdd(bm)}
+            overlay={
+              <OptWrapper className="space-x-4">
+                <Opt
+                  onClick={() => window.open(bm.url, "_blank")}
+                  icon={<EyeOutlined />}
+                />
+                <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
+                <Opt icon={<EditOutlined />} onClick={() => onAdd(bm)} />
+                <Opt icon={<DeleteOutlined />} onClick={() => onAdd(bm)}></Opt>
+              </OptWrapper>
+            }
+          >
+            添加
+          </Dropdown.Button>
         </Card>
       </Content>
     );
@@ -84,6 +91,7 @@ const Text = styled.a`
 
 const OptWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   margin: auto;
