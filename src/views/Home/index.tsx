@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <PageHeader className="site-page-header" title={appInfo.version} />
+      <PageHeader className="site-page-header" title={"v" + appInfo.version} />
       <Bookmarks bookmarks={bookmarks} />
     </>
   );

@@ -23,7 +23,7 @@ const BookmarkNode: React.FC<{
       <Content>
         <Card hoverable={true}>
           <div className="flex">
-            <Avatar src={getFavicon(bm.url)} />
+            <Avatar className="mr-4" src={getFavicon(bm.url)} />
             <Text title={bm.url} href={bm.url}>
               {bm.title || bm.url}
             </Text>
