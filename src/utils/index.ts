@@ -8,7 +8,7 @@ export const validImage = (url: string) => {
     const img = new Image();
     img.src = url;
     img.onerror = img.onabort = () => {
-      reject("error");
+      reject(false);
     };
     img.onload = () => {
       resolve(true);

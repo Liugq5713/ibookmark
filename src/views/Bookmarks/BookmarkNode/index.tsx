@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Divider, Typography, Button, Card, Avatar } from "antd";
@@ -8,7 +8,7 @@ import {
   EyeOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import { getFavicon } from "../../../utils";
+import { getFavicon, validImage } from "../../../utils";
 
 const { Title } = Typography;
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
@@ -18,12 +18,29 @@ const BookmarkNode: React.FC<{
   bm: BookmarkTreeNode;
   onAdd(parent: BookmarkTreeNode): void;
 }> = ({ level, bm, onAdd }) => {
+  const [url, setUrl] = useState("");
+
+  const getUrl = useCallback(async () => {
+    if (bm.url) {
+      const url = getFavicon(bm.url);
+      const isValid = await validImage(url);
+      if (isValid) {
+        setUrl(url);
+      }
+    }
+  }, [bm.url]);
+  useEffect(() => {
+    getUrl();
+  }, [getUrl]);
+
   if (bm.url) {
     return (
       <Content>
         <Card hoverable={true}>
           <div className="flex">
-            <Avatar className="mr-4" src={getFavicon(bm.url)} />
+            {url && (
+              <Avatar size="large" className="mr-4" src={getFavicon(bm.url)} />
+            )}
             <Text title={bm.url} href={bm.url}>
               {bm.title || bm.url}
             </Text>
