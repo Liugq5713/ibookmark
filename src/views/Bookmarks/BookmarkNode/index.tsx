@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Divider, Typography, Button, Card, Avatar } from "antd";
+import {
+  PlusOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
+import { getFavicon } from "../../../utils";
+
 const { Title } = Typography;
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
@@ -15,14 +22,19 @@ const BookmarkNode: React.FC<{
     return (
       <Content>
         <Card hoverable={true}>
-          <Text title={bm.url} href={bm.url}>
-            {bm.title || bm.url}
+          <Text title={bm.url} href={bm.url} className="flex">
+            <Avatar src={getFavicon(bm.url)} />
+            <div>{bm.title || bm.url}</div>
           </Text>
-          <Opt
-            size="small"
-            icon={<PlusOutlined />}
-            onClick={() => onAdd(bm)}
-          ></Opt>
+          <OptWrapper className="space-x-4">
+            <Opt
+              onClick={() => window.open(bm.url, "_blank")}
+              icon={<EyeOutlined />}
+            />
+            <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
+            <Opt icon={<EditOutlined />} onClick={() => onAdd(bm)} />
+            <Opt icon={<DeleteOutlined />} onClick={() => onAdd(bm)}></Opt>
+          </OptWrapper>
         </Card>
       </Content>
     );
@@ -33,11 +45,9 @@ const BookmarkNode: React.FC<{
       <>
         <Header level={level!} className="flex">
           <Title level={3}>{bm.title}</Title>
-          <Opt
-            size="small"
-            icon={<PlusOutlined />}
-            onClick={() => onAdd(bm)}
-          ></Opt>
+          <OptWrapper>
+            <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
+          </OptWrapper>
         </Header>
         <Divider />
       </>
@@ -68,12 +78,16 @@ const Text = styled.a`
   text-overflow: ellipsis;
 `;
 
-const Opt = styled(Button)`
-  display: none;
+const OptWrapper = styled.div`
+  display: flex;
   position: absolute;
   top: 0;
   margin: auto;
   bottom: 0;
+`;
+
+const Opt = styled(Button)`
+  display: none;
   ${Content}:hover & {
     display: block;
   }

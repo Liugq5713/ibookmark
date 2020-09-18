@@ -1,3 +1,4 @@
+import { PageHeader } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import Bookmark from "../../services/bookmark";
 
@@ -22,6 +23,10 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <PageHeader
+        className="site-page-header"
+        title={process.env.REACT_APP_CURRENT_GIT_SHA}
+      />
       <Bookmarks bookmarks={bookmarks} />
     </>
   );
