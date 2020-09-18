@@ -78,7 +78,6 @@ const Header = styled.div<{ level: number }>`
 `;
 
 const Content = styled.div`
-  display: inline-block;
   width: 320px;
 `;
 

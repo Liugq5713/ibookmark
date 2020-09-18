@@ -97,4 +97,6 @@ export default Bookmarks;
 const ContentWrapper = styled.div<{ level: number }>`
   margin-left: ${(props) => props.level * 16}px;
   margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
 `;
