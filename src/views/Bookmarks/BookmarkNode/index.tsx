@@ -22,10 +22,12 @@ const BookmarkNode: React.FC<{
     return (
       <Content>
         <Card hoverable={true}>
-          <Text title={bm.url} href={bm.url} className="flex">
+          <div className="flex">
             <Avatar src={getFavicon(bm.url)} />
-            <div>{bm.title || bm.url}</div>
-          </Text>
+            <Text title={bm.url} href={bm.url}>
+              {bm.title || bm.url}
+            </Text>
+          </div>
           <OptWrapper className="space-x-4">
             <Opt
               onClick={() => window.open(bm.url, "_blank")}
