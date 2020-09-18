@@ -65,7 +65,9 @@ const BookmarkNode: React.FC<{
 export default BookmarkNode;
 
 export const CardWrapper = styled(Card)`
-  padding: 8px !important;
+  .ant-card-body {
+    padding: 8px !important;
+  }
 `;
 
 const Header = styled.div<{ level: number }>`
