@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card, Dropdown } from "antd";
+import { Divider, Typography, Button, Card, Dropdown, Menu } from "antd";
 import {
   PlusOutlined,
   DeleteOutlined,
@@ -29,22 +29,33 @@ const BookmarkNode: React.FC<{
               {bm.title || bm.url}
             </Text>
           </div>
-          <Dropdown.Button
-            onClick={() => onAdd(bm)}
-            overlay={
-              <OptWrapper className="space-x-4">
-                <Opt
-                  onClick={() => window.open(bm.url, "_blank")}
-                  icon={<EyeOutlined />}
-                />
-                <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
-                <Opt icon={<EditOutlined />} onClick={() => onAdd(bm)} />
-                <Opt icon={<DeleteOutlined />} onClick={() => onAdd(bm)}></Opt>
-              </OptWrapper>
-            }
-          >
-            添加
-          </Dropdown.Button>
+          <OptWrapper>
+            <Dropdown.Button
+              onClick={() => onAdd(bm)}
+              overlay={
+                <Menu>
+                  <Menu.Item
+                    key="1"
+                    icon={<EyeOutlined />}
+                    onClick={() => window.open(bm.url, "_blank")}
+                  ></Menu.Item>
+                  <Menu.Item
+                    key="2"
+                    icon={<PlusOutlined />}
+                    onClick={() => onAdd(bm)}
+                  ></Menu.Item>
+                  <Menu.Item key="3" icon={<EditOutlined />}></Menu.Item>
+                  <Menu.Item
+                    key="4"
+                    icon={<DeleteOutlined />}
+                    onClick={() => onAdd(bm)}
+                  ></Menu.Item>
+                </Menu>
+              }
+            >
+              <PlusOutlined />
+            </Dropdown.Button>
+          </OptWrapper>
         </Card>
       </Content>
     );
@@ -56,7 +67,7 @@ const BookmarkNode: React.FC<{
         <Header level={level!} className="flex">
           <Title level={3}>{bm.title}</Title>
           <OptWrapper>
-            <Opt icon={<PlusOutlined />} onClick={() => onAdd(bm)}></Opt>
+            <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
           </OptWrapper>
         </Header>
         <Divider />
@@ -90,16 +101,10 @@ const Text = styled.a`
 `;
 
 const OptWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: none;
   position: absolute;
   top: 0;
-  margin: auto;
-  bottom: 0;
-`;
-
-const Opt = styled(Button)`
-  display: none;
+  right: 0;
   ${Content}:hover & {
     display: block;
   }
