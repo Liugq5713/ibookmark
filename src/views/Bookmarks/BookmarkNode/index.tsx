@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card, Dropdown, Menu } from "antd";
-import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Divider, Typography, Button, Card } from "antd";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import FAvatar from "../../../components/FAvatar";
+import Bookmark from "../../../services/bookmark";
 
 const { Title } = Typography;
 
@@ -14,6 +15,10 @@ const BookmarkNode: React.FC<{
   bm: BookmarkTreeNode;
   onAdd(parent: BookmarkTreeNode): void;
 }> = ({ level, bm, onAdd }) => {
+  const onDel = (id: string) => {
+    Bookmark.deleteBookmark(id);
+  };
+
   if (bm.url) {
     return (
       <Content>
@@ -27,21 +32,8 @@ const BookmarkNode: React.FC<{
             </Text>
           </div>
           <OptWrapper>
-            <Dropdown.Button
-              onClick={() => onAdd(bm)}
-              overlay={
-                <Menu>
-                  <Menu.Item key="3" icon={<EditOutlined />}></Menu.Item>
-                  <Menu.Item
-                    key="4"
-                    icon={<DeleteOutlined />}
-                    onClick={() => onAdd(bm)}
-                  ></Menu.Item>
-                </Menu>
-              }
-            >
-              <PlusOutlined />
-            </Dropdown.Button>
+            <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
+            <Button icon={<DeleteOutlined />} onClick={() => onDel(bm.id)} />
           </OptWrapper>
         </CardWrapper>
       </Content>

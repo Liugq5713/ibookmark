@@ -14,6 +14,15 @@ class Bookmark {
       });
     });
   }
+
+  static deleteBookmark(id: string) {
+    return new Promise((resolve, reject) => {
+      chrome.bookmarks.remove(id, (result: unknown) => {
+        console.log(result);
+        resolve(result);
+      });
+    });
+  }
 }
 
 export default Bookmark;
