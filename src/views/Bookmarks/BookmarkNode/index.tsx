@@ -91,7 +91,7 @@ const Content = styled.div`
 
 const Text = styled.a`
   width: 100%;
-  height: 24px;
+  height: 34px;
   display: block;
   white-space: nowrap;
   overflow: hidden;
