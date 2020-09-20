@@ -17,8 +17,8 @@ const Home: React.FC = () => {
       setTreeBookmarks((res as unknown) as any[]);
     } else {
       const bookmarks = await Bookmark.getTreeBookmarks();
-      Storage.set({ bookmarks });
       setTreeBookmarks((bookmarks as unknown) as any[]);
+      await Storage.set({ bookmarks });
     }
   }, []);
 
