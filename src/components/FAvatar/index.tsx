@@ -1,7 +1,7 @@
 import { Avatar } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { getFavicon, validImage } from "../../utils";
-import { StarOutlined } from "@ant-design/icons";
+import { SmileOutlined } from "@ant-design/icons";
 type Props = {
   src: string;
   [idx: string]: any;
@@ -27,7 +27,7 @@ const FAvatar: React.FC<Props> = ({ src, ...restProps }) => {
   return url ? (
     <Avatar {...restProps} src={getFavicon(url)} />
   ) : (
-    <Avatar {...restProps} icon={<StarOutlined />} />
+    <Avatar {...restProps} icon={<SmileOutlined />} />
   );
 };
 

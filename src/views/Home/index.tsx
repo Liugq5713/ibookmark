@@ -1,5 +1,8 @@
 import { PageHeader } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
+
+import { Affix, Button } from "antd";
+
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
@@ -38,7 +41,10 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <PageHeader className="site-page-header" title={"v" + appInfo.version} />
+      <Button type="primary" className="absolute top-0 right-0">
+        {"v" + appInfo.version}
+      </Button>
+
       <Bookmarks bookmarks={bookmarks} />
     </>
   );
