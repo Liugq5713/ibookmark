@@ -30,16 +30,15 @@ const BookmarkNode: React.FC<{
     ev.preventDefault();
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = ev.dataTransfer.getData("movedBookmark");
-    console.log("===", bm, JSON.parse(movedBookmark));
-    try {
-      const res = await Bookmark.move(movedBookmark.id, {
+    chrome.bookmarks.move(
+      movedBookmark.id,
+      {
         parentId: bm.id,
-        index: 0,
-      });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
+      },
+      (res) => {
+        console.log(res);
+      }
+    );
   };
   const onDragOver = (ev: any) => {
     ev.preventDefault();
