@@ -10,6 +10,7 @@ const Home: React.FC = () => {
 
   const getTreeBookmarks = useCallback(async () => {
     const bookmarks = await Bookmark.getTreeBookmarks();
+    console.log(bookmarks, "================");
     setTreeBookmarks((bookmarks as unknown) as any[]);
   }, []);
   useEffect(() => {
