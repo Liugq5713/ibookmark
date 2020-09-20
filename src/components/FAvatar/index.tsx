@@ -27,7 +27,7 @@ const FAvatar: React.FC<Props> = ({ src, ...restProps }) => {
   return url ? (
     <Avatar {...restProps} src={getFavicon(url)} />
   ) : (
-    <SmileOutlined style={{ width: 32 }} {...restProps} />
+    <SmileOutlined style={{ width: 32, height: 32 }} {...restProps} />
   );
 };
 
