@@ -3,16 +3,25 @@ import React, { useCallback, useEffect, useState } from "react";
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
+import Storage from "../../services/storage";
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const bookmarks = await Bookmark.getTreeBookmarks();
-    console.log(bookmarks, "================");
-    setTreeBookmarks((bookmarks as unknown) as any[]);
+    const res = await Storage.get(["bookmarks"]);
+    console.log(res, "================");
+
+    if (res) {
+      setTreeBookmarks((res as unknown) as any[]);
+    } else {
+      const bookmarks = await Bookmark.getTreeBookmarks();
+      Storage.set({ bookmarks });
+      setTreeBookmarks((bookmarks as unknown) as any[]);
+    }
   }, []);
+
   useEffect(() => {
     getTreeBookmarks();
   }, [getTreeBookmarks]);
