@@ -11,6 +11,8 @@ class Bookmark {
     });
   }
 
+  static move = promisify(chrome.bookmarks.move);
+
   static deleteBookmark(id: string) {
     return new Promise((resolve, reject) => {
       chrome.bookmarks.remove(id, (result: unknown) => {
