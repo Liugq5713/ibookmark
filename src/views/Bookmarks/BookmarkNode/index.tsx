@@ -65,6 +65,7 @@ export const CardWrapper = styled(Card)`
 `;
 
 const Header = styled.div<{ level: number }>`
+  margin-top: 32px;
   position: relative;
   color: hsla(0, 0%, 100%, 0.85);
   font-weight: 500;
