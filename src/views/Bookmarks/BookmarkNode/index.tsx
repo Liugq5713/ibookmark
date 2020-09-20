@@ -31,7 +31,7 @@ const BookmarkNode: React.FC<{
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = ev.dataTransfer.getData("movedBookmark");
     chrome.bookmarks.move(
-      movedBookmark.id,
+      JSON.parse(movedBookmark).id,
       {
         parentId: bm.id,
       },
