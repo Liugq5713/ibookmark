@@ -3,23 +3,26 @@ import React, { useCallback, useEffect, useState } from "react";
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
-import Storage from "../../services/storage";
+// import Storage from "../../services/storage";
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const res: any = await Storage.get("bookmarks");
-    console.log(res, "================");
+    chrome.storage.local.set({ user_name: "hello world" });
 
-    if (res) {
-      setTreeBookmarks((res.bookmarks as unknown) as any[]);
-    } else {
-      const bookmarks = await Bookmark.getTreeBookmarks();
-      setTreeBookmarks((bookmarks as unknown) as any[]);
-      await Storage.set({ bookmarks });
-    }
+    // if (res) {
+    //   setTreeBookmarks((res.bookmarks as unknown) as any[]);
+    // } else {
+    const bookmarks = await Bookmark.getTreeBookmarks();
+    setTreeBookmarks((bookmarks as unknown) as any[]);
+
+    chrome.storage.local.get(["user_name"], (res) => {
+      console.log(res);
+    });
+    // await Storage.set({ bookmarks });
+    // }
   }, []);
 
   useEffect(() => {
