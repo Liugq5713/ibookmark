@@ -22,16 +22,16 @@ const BookmarkNode: React.FC<{
   const onDragStart = (ev: any, bm: BookmarkTreeNode) => {
     var dt = ev.dataTransfer;
     dt.effectAllowed = "move";
-    dt.setData("movedBookmark", bm);
+    dt.setData("movedBookmark", JSON.stringify(bm));
   };
 
   const onDrop = (ev: any, bm: BookmarkTreeNode) => {
     ev.preventDefault();
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = ev.dataTransfer.getData("movedBookmark");
-    console.log("===", bm, movedBookmark);
+    console.log("===", bm, JSON.parse(movedBookmark));
   };
-  const onDragOver = (ev) => {
+  const onDragOver = (ev: any) => {
     ev.preventDefault();
     // Get the id of the target and add the moved element to the target's DOM
     // var data = ev.dataTransfer.getData("text/plain");
