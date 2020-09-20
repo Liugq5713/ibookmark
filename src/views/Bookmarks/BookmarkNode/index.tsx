@@ -26,12 +26,20 @@ const BookmarkNode: React.FC<{
     dt.setData("movedBookmark", JSON.stringify(bm));
   };
 
-  const onDrop = (ev: any, bm: BookmarkTreeNode) => {
+  const onDrop = async (ev: any, bm: BookmarkTreeNode) => {
     ev.preventDefault();
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = ev.dataTransfer.getData("movedBookmark");
     console.log("===", bm, JSON.parse(movedBookmark));
-    Bookmark.move(movedBookmark.id, { parentId: bm.id });
+    try {
+      const res = await Bookmark.move(movedBookmark.id, {
+        parentId: bm.id,
+        index: 0,
+      });
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const onDragOver = (ev: any) => {
     ev.preventDefault();
