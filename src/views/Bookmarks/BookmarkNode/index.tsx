@@ -49,7 +49,7 @@ const BookmarkNode: React.FC<{
             <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
           </OptWrapper>
         </Header>
-        <Divider />
+        <Divider style={{ margin: "8px 0" }} />
       </>
     );
   }
