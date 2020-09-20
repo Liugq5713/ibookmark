@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card } from "antd";
+import { Divider, Typography, Button, Card, message } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import FAvatar from "../../../components/FAvatar";
 import Bookmark from "../../../services/bookmark";
@@ -29,25 +29,20 @@ const BookmarkNode: React.FC<{
   const onDrop = async (ev: any, bm: BookmarkTreeNode) => {
     ev.preventDefault();
     ev.dataTransfer.dropEffect = "move";
-    const movedBookmark = ev.dataTransfer.getData("movedBookmark");
-    chrome.bookmarks.move(
-      JSON.parse(movedBookmark).id,
-      {
+    const movedBookmark = JSON.parse(ev.dataTransfer.getData("movedBookmark"));
+    try {
+      await Bookmark.move(movedBookmark.id, {
         parentId: bm.id,
-      },
-      (res) => {
-        console.log(res);
-      }
-    );
+      });
+    } catch (e) {
+      message.error(e.message);
+    }
   };
+
   const onDragOver = (ev: any) => {
     ev.preventDefault();
-    // Get the id of the target and add the moved element to the target's DOM
-    // var data = ev.dataTransfer.getData("text/plain");
-    // const res = ev.dataTransfer.getData("text");
-    // console.log("===", res);
-    // console.log("end b", e);
   };
+
   if (bm.url) {
     return (
       <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
