@@ -8,6 +8,9 @@ type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
+  chrome.storage.local.get("user_name", (res: any) => {
+    console.log(res);
+  });
 
   const getTreeBookmarks = useCallback(async () => {
     // if (res) {
