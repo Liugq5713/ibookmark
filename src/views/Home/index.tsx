@@ -10,11 +10,11 @@ const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const res = await Storage.get(["bookmarks"]);
+    const res: any = await Storage.get(["bookmarks"]);
     console.log(res, "================");
 
     if (res) {
-      setTreeBookmarks((res as unknown) as any[]);
+      setTreeBookmarks((res.bookmarks as unknown) as any[]);
     } else {
       const bookmarks = await Bookmark.getTreeBookmarks();
       setTreeBookmarks((bookmarks as unknown) as any[]);
