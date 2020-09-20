@@ -1,9 +1,7 @@
 import { promisify } from "../utils";
 
 class Bookmark {
-  static getTreeBookmarks() {
-    return promisify(chrome.bookmarks.getTree);
-  }
+  static getTreeBookmarks = promisify(chrome.bookmarks.getTree);
 
   static createBookmark(obj: chrome.bookmarks.BookmarkCreateArg) {
     return new Promise((resolve, reject) => {
