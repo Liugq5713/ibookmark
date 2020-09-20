@@ -1,4 +1,4 @@
-import { Avatar } from "antd";
+import { Avatar, message } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { getFavicon, validImage } from "../../utils";
 import { SmileOutlined } from "@ant-design/icons";
@@ -13,10 +13,12 @@ const FAvatar: React.FC<Props> = ({ src, ...restProps }) => {
   const getUrl = useCallback(async () => {
     if (src) {
       const url = getFavicon(src);
-      const isValid = await validImage(url);
-      if (isValid) {
-        setUrl(url);
-      }
+      try {
+        const isValid = await validImage(url);
+        if (isValid) {
+          setUrl(url);
+        }
+      } catch (e) {}
     }
   }, [src]);
 
