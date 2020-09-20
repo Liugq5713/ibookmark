@@ -14,11 +14,14 @@ const Home: React.FC = () => {
     //   setTreeBookmarks((res.bookmarks as unknown) as any[]);
     // } else {
 
-    const res = await Storage.get("bookmarks");
-    console.log("==", res);
-    const bookmarks = await Bookmark.getTreeBookmarks();
-    setTreeBookmarks((bookmarks as unknown) as any[]);
-    chrome.storage.local.set({ bookmarks });
+    const res: any = await Storage.get("bookmarks");
+    if (res.bookmarks) {
+      setTreeBookmarks((res.bookmarks as unknown) as any[]);
+    } else {
+      const bookmarks = await Bookmark.getTreeBookmarks();
+      setTreeBookmarks((res.bookmarks as unknown) as any[]);
+      await chrome.storage.local.set({ bookmarks });
+    }
 
     // await Storage.set({ bookmarks });
     // }
