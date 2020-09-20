@@ -18,14 +18,14 @@ export const validImage = (url: string) => {
 
 // chrome 插件的风格不是 error first 的
 export const promisify = (func: Function) => {
-  return (...args: any[]) => {
+  return function (...args: any[]) {
     return new Promise((resolve, reject) => {
       function cb(result: any) {
         resolve(result);
       }
 
       args.push(cb);
-      func.call(this, ...args);
+      func.call(null, ...args);
     });
   };
 };
