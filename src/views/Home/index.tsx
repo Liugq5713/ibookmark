@@ -18,7 +18,7 @@ const Home: React.FC = () => {
     // } else {
     const bookmarks = await Bookmark.getTreeBookmarks();
     setTreeBookmarks((bookmarks as unknown) as any[]);
-    chrome.storage.local.set({ user_name: bookmarks });
+    chrome.storage.local.set({ bookmarks });
 
     // await Storage.set({ bookmarks });
     // }
