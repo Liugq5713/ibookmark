@@ -31,7 +31,14 @@ const BookmarkNode: React.FC<{
     const movedBookmark = ev.dataTransfer.getData("movedBookmark");
     console.log("===", bm, movedBookmark);
   };
-
+  const onDragOver = (ev) => {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    // var data = ev.dataTransfer.getData("text/plain");
+    // const res = ev.dataTransfer.getData("text");
+    // console.log("===", res);
+    // console.log("end b", e);
+  };
   if (bm.url) {
     return (
       <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
@@ -55,15 +62,17 @@ const BookmarkNode: React.FC<{
 
   if (bm.title) {
     return (
-      <div onDrop={(e) => onDrop(e, bm)} onDragOver={() => {}}>
-        <Header level={level!} className="flex">
-          <Title level={3}>{bm.title}</Title>
-          <OptWrapper>
-            <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
-          </OptWrapper>
-        </Header>
+      <>
+        <div onDrop={(e) => onDrop(e, bm)} onDragOver={onDragOver}>
+          <Header level={level!} className="flex">
+            <Title level={3}>{bm.title}</Title>
+            <OptWrapper>
+              <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
+            </OptWrapper>
+          </Header>
+        </div>
         <Divider style={{ margin: "8px 0" }} />
-      </div>
+      </>
     );
   }
   return null;
