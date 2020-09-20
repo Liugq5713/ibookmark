@@ -10,17 +10,13 @@ const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    chrome.storage.local.set({ user_name: "hello world" });
-
     // if (res) {
     //   setTreeBookmarks((res.bookmarks as unknown) as any[]);
     // } else {
     const bookmarks = await Bookmark.getTreeBookmarks();
     setTreeBookmarks((bookmarks as unknown) as any[]);
+    chrome.storage.local.set({ user_name: bookmarks });
 
-    chrome.storage.local.get(["user_name"], (res) => {
-      console.log(res);
-    });
     // await Storage.set({ bookmarks });
     // }
   }, []);
