@@ -19,9 +19,22 @@ const BookmarkNode: React.FC<{
     Bookmark.deleteBookmark(id);
   };
 
+  const onDragStart = (ev: any, bm: BookmarkTreeNode) => {
+    var dt = ev.dataTransfer;
+    dt.effectAllowed = "move";
+    dt.setData("movedBookmark", bm);
+  };
+
+  const onDrop = (ev: any, bm: BookmarkTreeNode) => {
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+    const movedBookmark = ev.dataTransfer.getData("movedBookmark");
+    console.log("===", bm, movedBookmark);
+  };
+
   if (bm.url) {
     return (
-      <Content>
+      <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
         <CardWrapper hoverable={true}>
           <div className="flex items-center">
             <div>
@@ -42,7 +55,7 @@ const BookmarkNode: React.FC<{
 
   if (bm.title) {
     return (
-      <>
+      <div onDrop={(e) => onDrop(e, bm)} onDragOver={() => {}}>
         <Header level={level!} className="flex">
           <Title level={3}>{bm.title}</Title>
           <OptWrapper>
@@ -50,7 +63,7 @@ const BookmarkNode: React.FC<{
           </OptWrapper>
         </Header>
         <Divider style={{ margin: "8px 0" }} />
-      </>
+      </div>
     );
   }
   return null;
