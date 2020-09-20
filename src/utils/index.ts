@@ -20,9 +20,9 @@ export const validImage = (url: string) => {
 export const promisify = (func: Function) => {
   return (...args: any[]) => {
     return new Promise((resolve, reject) => {
-      const cb = (result: any) => {
+      function cb(result: any) {
         resolve(result);
-      };
+      }
 
       args.push(cb);
       func.call(this, ...args);
