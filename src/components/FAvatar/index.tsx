@@ -1,7 +1,6 @@
-import { Avatar, message } from "antd";
+import { Avatar } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { getFavicon, validImage } from "../../utils";
-import { SmileOutlined } from "@ant-design/icons";
 type Props = {
   src: string;
   [idx: string]: any;
