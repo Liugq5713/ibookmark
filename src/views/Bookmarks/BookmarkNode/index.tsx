@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Divider, Typography, Button, Card, message } from "antd";
@@ -15,7 +15,6 @@ const BookmarkNode: React.FC<{
   bm: BookmarkTreeNode;
   onAdd(parent: BookmarkTreeNode): void;
 }> = ({ level, bm, onAdd }) => {
-  const [isDrop, setIsDrop] = useState(false);
   const onDel = (id: string) => {
     Bookmark.deleteBookmark(id);
   };
@@ -35,18 +34,18 @@ const BookmarkNode: React.FC<{
       await Bookmark.move(movedBookmark.id, {
         parentId: bm.id,
       });
-      setIsDrop(false);
+      ev.target.style = "none";
     } catch (e) {
       message.error(e.message);
     }
   };
 
-  const onDragEnter = () => {
-    setIsDrop(true);
+  const onDragEnter = (ev) => {
+    ev.target.style = "none";
   };
 
-  const onDragLeave = () => {
-    setIsDrop(false);
+  const onDragLeave = (ev) => {
+    ev.target.style = `border: 1px dashed #fff`;
   };
   const onDragOver = (ev: any) => {
     ev.preventDefault();
@@ -76,9 +75,8 @@ const BookmarkNode: React.FC<{
   if (bm.title) {
     return (
       <>
-        <DropItem
+        <div
           className="w-full"
-          isDrop={isDrop}
           onDrop={(e) => onDrop(e, bm)}
           onDragEnter={onDragEnter}
           onDragLeave={onDragLeave}
@@ -96,7 +94,7 @@ const BookmarkNode: React.FC<{
               <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             </OptWrapper>
           </Header>
-        </DropItem>
+        </div>
         <Divider style={{ margin: "8px 0" }} />
       </>
     );
@@ -131,10 +129,6 @@ const Text = styled.a`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const DropItem = styled.div<{ isDrop: boolean }>`
-  border: ${(props) => (props.isDrop ? "1px dashed #cbd5e0" : "none")};
 `;
 
 const OptWrapper = styled.div`

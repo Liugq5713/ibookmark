@@ -84,7 +84,6 @@ const Home: React.FC = () => {
   };
 
   const onDragLeave = (ev) => {
-    console.log(ev);
     ev.target.style = "none";
   };
 
