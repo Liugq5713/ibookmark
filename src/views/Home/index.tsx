@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { Button } from "antd";
+import { Button, Layout } from "antd";
 
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
+
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
+const { Header, Footer, Sider, Content } = Layout;
 
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
@@ -26,11 +28,20 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Button type="primary" className="absolute top-0 right-0">
-        {"v" + appInfo.version}
-      </Button>
-
-      <Bookmarks bookmarks={bookmarks} />
+      <Layout>
+        <Sider>
+          <Button type="primary" className="absolute top-0 right-0">
+            {"v" + appInfo.version}
+          </Button>
+        </Sider>
+        <Layout>
+          <Header>Header</Header>
+          <Content>
+            <Bookmarks bookmarks={bookmarks} />
+          </Content>
+          <Footer>Footer</Footer>
+        </Layout>
+      </Layout>
     </>
   );
 };
