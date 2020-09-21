@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
   const getTreeBookmarks = useCallback(async () => {
     const bookmarks = await Bookmark.getSubTree("1");
-    console.log({ bookmarks });
+    console.log(bookmarks);
 
     setTreeBookmarks((bookmarks as unknown) as any[]);
   }, []);
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         <Layout style={{ marginLeft: 200 }}>
           <Header style={{ padding: 0 }}>Header</Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
-            <Bookmarks bookmarks={bookmarks[0].children} />
+            <Bookmarks bookmarks={bookmarks} />
           </Content>
           <Footer style={{ textAlign: "center" }}>
             {"v" + appInfo.version}
