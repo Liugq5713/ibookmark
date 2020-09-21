@@ -41,7 +41,7 @@ const BookmarkNode: React.FC<{
   };
 
   const onDragEnter = (ev) => {
-    ev.target.style.border = "border: 1px dashed #fff";
+    ev.target.style.border = "1px dashed #fff";
   };
 
   const onDragLeave = (ev) => {
