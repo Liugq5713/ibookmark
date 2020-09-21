@@ -77,13 +77,14 @@ const BookmarkNode: React.FC<{
     return (
       <>
         <DropItem
+          className="w-full"
           isDrop={isDrop}
           onDrop={(e) => onDrop(e, bm)}
           onDragEnter={onDragEnter}
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
         >
-          <Header level={level!} className="flex">
+          <Header level={level!} className="flex w-full">
             <Title className="w-full" level={3}>
               {bm.title}
             </Title>
