@@ -1,6 +1,6 @@
 {
   "name": "ibookmark",
-  "version": "0.1.68",
+  "version": "0.1.69",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
