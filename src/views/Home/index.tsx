@@ -78,6 +78,14 @@ const Home: React.FC = () => {
   const onDragOver = (ev: any) => {
     ev.preventDefault();
   };
+  const onDragEnter = (ev) => {
+    ev.target.style = `border: 1px solid red`;
+  };
+
+  const onDragLeave = (ev) => {
+    console.log(ev);
+    ev.target.style = "none";
+  };
 
   const renderMenu = (sideItems): ReactNode => {
     return sideItems.map((side) => {
@@ -93,6 +101,8 @@ const Home: React.FC = () => {
             key={side.id}
             onDrop={(e) => onDrop(e, side)}
             onDragOver={onDragOver}
+            onDragEnter={onDragEnter}
+            onDragLeave={onDragLeave}
             onClick={() => scrollIntoView(`${side.title}_${side.id}`)}
           >
             {side.title}
