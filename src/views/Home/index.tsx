@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         <Layout style={{ marginLeft: 200 }}>
           <Header style={{ padding: 0 }}>Header</Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
-            <Bookmarks bookmarks={bookmarks} />
+            <Bookmarks bookmarks={bookmarks[0].children} />
           </Content>
           <Footer style={{ textAlign: "center" }}>
             {"v" + appInfo.version}
