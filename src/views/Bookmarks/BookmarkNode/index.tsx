@@ -84,7 +84,9 @@ const BookmarkNode: React.FC<{
           onDragOver={onDragOver}
         >
           <Header level={level!} className="flex">
-            <Title level={3}>{bm.title}</Title>
+            <Title className="w-full" level={3}>
+              {bm.title}
+            </Title>
             <OptWrapper>
               <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             </OptWrapper>
