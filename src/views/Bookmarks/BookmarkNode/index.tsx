@@ -64,7 +64,7 @@ const BookmarkNode: React.FC<{
               {bm.title || bm.url}
             </Text>
           </div>
-          <OptWrapper>
+          <OptWrapper className="right-0">
             <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             <Button icon={<DeleteOutlined />} onClick={() => onDel(bm.id)} />
           </OptWrapper>
@@ -92,7 +92,7 @@ const BookmarkNode: React.FC<{
             <Title className="w-full" level={3}>
               {bm.title}
             </Title>
-            <OptWrapper>
+            <OptWrapper className="left-0">
               <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             </OptWrapper>
           </Header>
@@ -140,8 +140,6 @@ const DropItem = styled.div<{ isDrop: boolean }>`
 const OptWrapper = styled.div`
   display: none;
   position: absolute;
-  top: 0;
-  right: 0;
   ${Content}:hover & {
     display: block;
   }

@@ -60,6 +60,7 @@ const Home: React.FC = () => {
   chrome.bookmarks.onChanged.addListener(getTreeBookmarks);
   chrome.bookmarks.onRemoved.addListener(getTreeBookmarks);
   chrome.bookmarks.onCreated.addListener(getTreeBookmarks);
+  chrome.bookmarks.onCreated.addListener(getSides);
 
   const onDrop = async (ev: any, side) => {
     ev.preventDefault();
