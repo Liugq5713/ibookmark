@@ -94,8 +94,11 @@ const Bookmarks: React.FC<Props> = ({ bookmarks }) => {
 
 export default Bookmarks;
 
-const ContentWrapper = styled.div<{ level: number }>`
+const ContentWrapper = styled.div.attrs({
+  className: "w-full",
+})<{ level: number }>`
   margin-left: ${(props) => props.level * 16}px;
+
   margin-bottom: 32px;
   display: flex;
   flex-wrap: wrap;
