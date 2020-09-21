@@ -1,10 +1,11 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
-import { Button, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
+import { scrollIntoView } from "../../utils";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Header, Footer, Sider, Content } = Layout;
