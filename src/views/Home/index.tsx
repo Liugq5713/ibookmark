@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         return {
           title: s.title,
           id: s.id,
-          children: s.children,
+          children: s.children.filter((s) => !s.url),
         };
       })
     );
