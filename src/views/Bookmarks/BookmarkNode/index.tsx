@@ -15,6 +15,7 @@ const BookmarkNode: React.FC<{
   bm: BookmarkTreeNode;
   onAdd(parent: BookmarkTreeNode): void;
 }> = ({ level, bm, onAdd }) => {
+  const [isDrop, setIsDrop] = useState(false);
   const onDel = (id: string) => {
     Bookmark.deleteBookmark(id);
   };
@@ -34,11 +35,19 @@ const BookmarkNode: React.FC<{
       await Bookmark.move(movedBookmark.id, {
         parentId: bm.id,
       });
+      setIsDrop(false);
     } catch (e) {
       message.error(e.message);
     }
   };
 
+  const onDragEnter = () => {
+    setIsDrop(true);
+  };
+
+  const onDragLeave = () => {
+    setIsDrop(false);
+  };
   const onDragOver = (ev: any) => {
     ev.preventDefault();
   };
@@ -67,14 +76,20 @@ const BookmarkNode: React.FC<{
   if (bm.title) {
     return (
       <>
-        <div onDrop={(e) => onDrop(e, bm)} onDragOver={onDragOver}>
+        <DropItem
+          isDrop={isDrop}
+          onDrop={(e) => onDrop(e, bm)}
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
+          onDragOver={onDragOver}
+        >
           <Header level={level!} className="flex">
             <Title level={3}>{bm.title}</Title>
             <OptWrapper>
               <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             </OptWrapper>
           </Header>
-        </div>
+        </DropItem>
         <Divider style={{ margin: "8px 0" }} />
       </>
     );
@@ -108,6 +123,10 @@ const Text = styled.a`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const DropItem = styled.div<{ isDrop: boolean }>`
+  border: ${(props) => (props.isDrop ? "1px solid red" : "none")};
 `;
 
 const OptWrapper = styled.div`
