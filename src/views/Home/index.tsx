@@ -29,17 +29,26 @@ const Home: React.FC = () => {
   return (
     <>
       <Layout>
-        <Sider>
+        <Sider
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+          }}
+        >
           <Button type="primary" className="absolute top-0 right-0">
             {"v" + appInfo.version}
           </Button>
         </Sider>
-        <Layout>
-          <Header>Header</Header>
-          <Content>
+        <Layout style={{ marginLeft: 200 }}>
+          <Header style={{ padding: 0 }}>Header</Header>
+          <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Bookmarks bookmarks={bookmarks} />
           </Content>
-          <Footer>Footer</Footer>
+          <Footer style={{ textAlign: "center" }}>
+            {"v" + appInfo.version}
+          </Footer>
         </Layout>
       </Layout>
     </>
