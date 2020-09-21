@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const [sideItems, setSides] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const bookmarks = await Bookmark.getSubTree(1);
+    const bookmarks = await Bookmark.getSubTree("1");
     console.log({ bookmarks });
 
     setTreeBookmarks((bookmarks as unknown) as any[]);
