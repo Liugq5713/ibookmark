@@ -63,8 +63,6 @@ const Home: React.FC = () => {
   chrome.bookmarks.onCreated.addListener(getSides);
 
   const onDrop = async (ev: any, side) => {
-    console.log(ev);
-
     ev.preventDefault();
     ev.target.style = "none";
     ev.dataTransfer.dropEffect = "move";
