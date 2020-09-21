@@ -10,14 +10,17 @@ type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const Home: React.FC = () => {
-  const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
+  const [bookmarks, setTreeBookmarks] = useState<BookmarkTreeNode[]>([]);
   const [sideItems, setSides] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const bookmarks = await Bookmark.getSubTree("1");
+    const bookmarks = (await Bookmark.getSubTree("1")) as BookmarkTreeNode[];
     console.log(bookmarks);
-
-    setTreeBookmarks((bookmarks as unknown) as any[]);
+    if (bookmarks.length > 1) {
+      setTreeBookmarks(bookmarks);
+    } else {
+      setTreeBookmarks(bookmarks[0]?.children || bookmarks);
+    }
   }, []);
 
   const getSides = async () => {
