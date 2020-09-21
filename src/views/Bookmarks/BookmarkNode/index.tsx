@@ -84,7 +84,11 @@ const BookmarkNode: React.FC<{
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
         >
-          <Header level={level!} className="flex w-full">
+          <Header
+            id={`${bm.title}_${bm.id}`}
+            level={level!}
+            className="flex w-full"
+          >
             <Title className="w-full" level={3}>
               {bm.title}
             </Title>

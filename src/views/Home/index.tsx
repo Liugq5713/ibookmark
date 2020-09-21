@@ -69,7 +69,14 @@ const Home: React.FC = () => {
           </SubMenu>
         );
       } else {
-        return <Menu.Item key={side.id}>{side.title}</Menu.Item>;
+        return (
+          <Menu.Item
+            key={side.id}
+            onClick={() => scrollIntoView(`${side.title}_${side.id}`)}
+          >
+            {side.title}
+          </Menu.Item>
+        );
       }
     });
   };
