@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
 import { Button, Layout, Menu } from "antd";
 
@@ -8,6 +8,7 @@ import Bookmarks from "../Bookmarks";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Header, Footer, Sider, Content } = Layout;
+const { SubMenu } = Menu;
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
   const [sideItems, setSides] = useState<any[]>([]);
@@ -22,15 +23,26 @@ const Home: React.FC = () => {
   const getSides = async () => {
     const sides = (await Bookmark.getChildren("1")) as BookmarkTreeNode[];
     console.log({ sides });
+    const sidesWithTitle = sides.filter((s) => !s.url);
+    const res = await Promise.all(
+      sidesWithTitle.map(async (s) => {
+        return {
+          ...s,
+          children: (await Bookmark.getChildren(s.id)) as BookmarkTreeNode[],
+        };
+      })
+    );
+
+    console.log(res);
+
     setSides(
-      sides
-        .filter((s) => !s.url)
-        .map((s) => {
-          return {
-            title: s.title,
-            id: s.id,
-          };
-        })
+      res.map((s) => {
+        return {
+          title: s.title,
+          id: s.id,
+          children: s.children,
+        };
+      })
     );
   };
   useEffect(() => {
@@ -45,6 +57,20 @@ const Home: React.FC = () => {
   chrome.bookmarks.onRemoved.addListener(getTreeBookmarks);
   chrome.bookmarks.onCreated.addListener(getTreeBookmarks);
 
+  const renderMenu = (sideItems): ReactNode => {
+    return sideItems.map((side) => {
+      if (side.children) {
+        return (
+          <SubMenu key={side.id} title={side.title}>
+            {renderMenu(side.children)}
+          </SubMenu>
+        );
+      } else {
+        return <Menu.Item key={side.id}>{side.title}</Menu.Item>;
+      }
+    });
+  };
+
   return (
     <>
       <Layout>
@@ -57,9 +83,7 @@ const Home: React.FC = () => {
           }}
         >
           <Menu theme="dark" mode="inline">
-            {sideItems.map((side) => {
-              return <Menu.Item key={side.id}>{side.title}</Menu.Item>;
-            })}
+            {renderMenu(sideItems)}
           </Menu>
           <Button type="primary" className="absolute top-0 right-0">
             {"v" + appInfo.version}
