@@ -88,12 +88,9 @@ const Home: React.FC = () => {
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
-          <Button type="primary" className="absolute top-0 right-0">
-            {"v" + appInfo.version}
-          </Button>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
-          <Header style={{ padding: 0 }}>Header</Header>
+          <Header style={{ padding: "0 30px" }}>{"v" + appInfo.version}</Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Bookmarks bookmarks={bookmarks} />
           </Content>
