@@ -63,15 +63,16 @@ const Home: React.FC = () => {
   chrome.bookmarks.onCreated.addListener(getSides);
 
   const onDrop = async (ev: any, side) => {
+    console.log(ev);
+
     ev.preventDefault();
+    ev.target.style = "none";
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = JSON.parse(ev.dataTransfer.getData("movedBookmark"));
     try {
       await Bookmark.move(movedBookmark.id, {
         parentId: side.id,
       });
-      console.log(ev);
-      ev.target.style = "none";
     } catch (e) {
       message.error(e.message);
     }
