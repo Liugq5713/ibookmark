@@ -21,6 +21,7 @@ const Home: React.FC = () => {
 
   const getSides = async () => {
     const sides = (await Bookmark.getChildren("1")) as BookmarkTreeNode[];
+    console.log({ sides });
     setSides(
       sides
         .filter((s) => !s.url)
