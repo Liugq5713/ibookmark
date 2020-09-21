@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const [sideItems, setSides] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
-    const bookmarks = await Bookmark.getTreeBookmarks();
+    const bookmarks = await Bookmark.getSubTree(1);
     console.log({ bookmarks });
 
     setTreeBookmarks((bookmarks as unknown) as any[]);
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
 
   const renderMenu = (sideItems): ReactNode => {
     return sideItems.map((side) => {
-      if (side.children) {
+      if (side.children && side.children.length > 0) {
         return (
           <SubMenu key={side.id} title={side.title}>
             {renderMenu(side.children)}
