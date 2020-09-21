@@ -70,6 +70,7 @@ const Home: React.FC = () => {
       await Bookmark.move(movedBookmark.id, {
         parentId: side.id,
       });
+      ev.target.style = `none`;
     } catch (e) {
       message.error(e.message);
     }
@@ -79,7 +80,7 @@ const Home: React.FC = () => {
     ev.preventDefault();
   };
   const onDragEnter = (ev) => {
-    ev.target.style = `border: 1px solid red`;
+    ev.target.style = `border: 1px dashed #fff`;
   };
 
   const onDragLeave = (ev) => {
