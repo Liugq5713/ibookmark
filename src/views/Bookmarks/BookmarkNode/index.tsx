@@ -28,7 +28,7 @@ const BookmarkNode: React.FC<{
 
   const onDrop = async (ev: any, bm: BookmarkTreeNode) => {
     ev.preventDefault();
-    ev.target.style = "none";
+    ev.target.style.border = "none";
     ev.dataTransfer.dropEffect = "move";
     const movedBookmark = JSON.parse(ev.dataTransfer.getData("movedBookmark"));
     try {
@@ -41,11 +41,11 @@ const BookmarkNode: React.FC<{
   };
 
   const onDragEnter = (ev) => {
-    ev.target.style = `border: 1px dashed #fff`;
+    ev.target.style.border = "border: 1px dashed #fff";
   };
 
   const onDragLeave = (ev) => {
-    ev.target.style = "none";
+    ev.target.style.border = "none";
   };
   const onDragOver = (ev: any) => {
     ev.preventDefault();
