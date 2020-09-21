@@ -70,7 +70,6 @@ const Home: React.FC = () => {
       await Bookmark.move(movedBookmark.id, {
         parentId: side.id,
       });
-      ev.target.style = `none`;
     } catch (e) {
       message.error(e.message);
     }
