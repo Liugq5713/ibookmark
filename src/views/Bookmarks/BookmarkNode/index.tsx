@@ -106,6 +106,7 @@ export const CardWrapper = styled(Card)`
 `;
 
 const Header = styled.div<{ level: number }>`
+  width: 100%;
   margin-top: 32px;
   position: relative;
   color: hsla(0, 0%, 100%, 0.85);
@@ -126,7 +127,7 @@ const Text = styled.a`
 `;
 
 const DropItem = styled.div<{ isDrop: boolean }>`
-  border: ${(props) => (props.isDrop ? "1px solid red" : "none")};
+  border: ${(props) => (props.isDrop ? "1px dashed #cbd5e0" : "none")};
 `;
 
 const OptWrapper = styled.div`
