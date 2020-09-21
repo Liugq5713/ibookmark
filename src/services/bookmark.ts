@@ -3,6 +3,8 @@ import { promisify } from "../utils";
 class Bookmark {
   static getTreeBookmarks = promisify(chrome.bookmarks.getTree);
 
+  static getChildren = promisify(chrome.bookmarks.getChildren);
+
   static createBookmark(obj: chrome.bookmarks.BookmarkCreateArg) {
     return new Promise((resolve, reject) => {
       chrome.bookmarks.create(obj, (result) => {

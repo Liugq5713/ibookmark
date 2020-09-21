@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { Button, Layout } from "antd";
+import { Button, Layout, Menu } from "antd";
 
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
@@ -8,9 +8,9 @@ import Bookmarks from "../Bookmarks";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Header, Footer, Sider, Content } = Layout;
-
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<any[]>([]);
+  const [sideItems, setSides] = useState<any[]>([]);
 
   const getTreeBookmarks = useCallback(async () => {
     const bookmarks = await Bookmark.getTreeBookmarks();
@@ -19,6 +19,22 @@ const Home: React.FC = () => {
     setTreeBookmarks((bookmarks as unknown) as any[]);
   }, []);
 
+  const getSides = async () => {
+    const sides = (await Bookmark.getChildren("1")) as BookmarkTreeNode[];
+    setSides(
+      sides
+        .filter((s) => !s.url)
+        .map((s) => {
+          return {
+            title: s.title,
+            id: s.id,
+          };
+        })
+    );
+  };
+  useEffect(() => {
+    getSides();
+  }, []);
   useEffect(() => {
     getTreeBookmarks();
   }, [getTreeBookmarks]);
@@ -39,6 +55,11 @@ const Home: React.FC = () => {
             left: 0,
           }}
         >
+          <Menu theme="dark" mode="inline">
+            {sideItems.map((side) => {
+              return <Menu.Item key={side.id}>{side.title}</Menu.Item>;
+            })}
+          </Menu>
           <Button type="primary" className="absolute top-0 right-0">
             {"v" + appInfo.version}
           </Button>
