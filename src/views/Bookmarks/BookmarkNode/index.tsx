@@ -60,7 +60,7 @@ const BookmarkNode: React.FC<{
             <div>
               <FAvatar className="position" src={bm.url} />
             </div>
-            <Text className="ml-4" title={bm.url} href={bm.url}>
+            <Text className="ml-4" title={bm.url} href={bm.url} target="_blank">
               {bm.title || bm.url}
             </Text>
           </div>
