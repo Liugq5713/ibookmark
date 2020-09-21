@@ -98,7 +98,7 @@ const Home: React.FC = () => {
             <Bookmarks bookmarks={bookmarks} />
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            {"v" + appInfo.version}
+            {"v" + appInfo.version} @ power by lgq
           </Footer>
         </Layout>
       </Layout>
