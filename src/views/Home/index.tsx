@@ -142,6 +142,7 @@ const Home: React.FC = () => {
             height: "100vh",
             position: "fixed",
             left: 0,
+            paddingBottom: 100,
           }}
         >
           <Menu theme="dark" mode="inline">
