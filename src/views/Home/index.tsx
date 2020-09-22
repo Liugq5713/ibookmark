@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
-import { Layout, Menu, message } from "antd";
+import { Card, Layout, Menu, message } from "antd";
 
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
@@ -8,7 +8,7 @@ import Bookmarks from "../Bookmarks";
 import { scrollIntoView } from "../../utils";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<BookmarkTreeNode[]>([]);
@@ -127,7 +127,7 @@ const Home: React.FC = () => {
             {renderMenu(sideItems)}
           </Menu>
           <div className="absolute w-full bottom-0">
-            {"v" + appInfo.version}
+            <Card className="text-center">{"v" + appInfo.version}</Card>
           </div>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
