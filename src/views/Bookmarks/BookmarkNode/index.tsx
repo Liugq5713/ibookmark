@@ -54,12 +54,15 @@ const BookmarkNode: React.FC<{
   if (bm.url) {
     return (
       <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
-        <CardWrapper hoverable={true}>
+        <CardWrapper
+          hoverable={true}
+          onClick={() => window.open(bm.url, "_blank")}
+        >
           <div className="flex items-center">
             <div>
               <FAvatar className="position" src={bm.url} />
             </div>
-            <Text className="ml-4" title={bm.url} href={bm.url} target="_blank">
+            <Text className="ml-4" title={bm.url}>
               {bm.title || bm.url}
             </Text>
           </div>
