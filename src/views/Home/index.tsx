@@ -149,8 +149,8 @@ const Home: React.FC = () => {
           </Menu>
           <div className="absolute w-full bottom-0">
             <Card className="text-center">
-              <div>{"v" + appInfo.version}</div>
-              <div>总 {total} 条</div>
+              <div>版本： {"v" + appInfo.version}</div>
+              <div>链接： {total} 条</div>
             </Card>
           </div>
         </Sider>
