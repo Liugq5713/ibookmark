@@ -147,7 +147,7 @@ const Home: React.FC = () => {
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
-          <div className="fixed w-full bottom-0">
+          <div className="sticky w-full bottom-0">
             <Card className="text-center">
               <div>版本： {"v" + appInfo.version}</div>
               <div>链接： {total} 条</div>
