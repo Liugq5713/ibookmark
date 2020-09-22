@@ -126,15 +126,14 @@ const Home: React.FC = () => {
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
+          <div className="absolute w-full bottom-0">
+            {"v" + appInfo.version}
+          </div>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
-          <Header style={{ padding: "0 30px" }}>{"v" + appInfo.version}</Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Bookmarks bookmarks={bookmarks} />
           </Content>
-          <Footer style={{ textAlign: "center" }}>
-            {"v" + appInfo.version} @ power by lgq
-          </Footer>
         </Layout>
       </Layout>
     </>
