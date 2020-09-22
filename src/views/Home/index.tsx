@@ -14,6 +14,8 @@ const Home: React.FC = () => {
   const [bookmarks, setTreeBookmarks] = useState<BookmarkTreeNode[]>([]);
   const [sideItems, setSides] = useState<any[]>([]);
 
+  const [total, setTotal] = useState(0);
+
   const getTreeBookmarks = useCallback(async () => {
     const bookmarks = (await Bookmark.getSubTree("1")) as BookmarkTreeNode[];
     console.log(bookmarks);
@@ -37,8 +39,6 @@ const Home: React.FC = () => {
       })
     );
 
-    console.log(res);
-
     setSides(
       res.map((s) => {
         return {
@@ -49,6 +49,27 @@ const Home: React.FC = () => {
       })
     );
   };
+
+  const getTotal = (bookmarks: BookmarkTreeNode[]): number => {
+    let cnt = 0;
+    function step(bookmarks: BookmarkTreeNode[]) {
+      bookmarks.map((bm) => {
+        if (bm.children) {
+          return step(bm.children);
+        } else {
+          if (bm.url) {
+            cnt++;
+          }
+        }
+      });
+    }
+    step(bookmarks);
+    return cnt;
+  };
+
+  useEffect(() => {
+    setTotal(getTotal(bookmarks));
+  }, [bookmarks]);
   useEffect(() => {
     getSides();
   }, []);
@@ -127,7 +148,10 @@ const Home: React.FC = () => {
             {renderMenu(sideItems)}
           </Menu>
           <div className="absolute w-full bottom-0">
-            <Card className="text-center">{"v" + appInfo.version}</Card>
+            <Card className="text-center">
+              <div>{"v" + appInfo.version}</div>
+              <div>总 {total} 条</div>
+            </Card>
           </div>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
