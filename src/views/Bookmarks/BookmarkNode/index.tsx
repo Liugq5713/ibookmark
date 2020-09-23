@@ -67,8 +67,20 @@ const BookmarkNode: React.FC<{
             </Text>
           </div>
           <OptWrapper className="right-0 top-0">
-            <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
-            <Button icon={<DeleteOutlined />} onClick={() => onDel(bm.id)} />
+            <Button
+              icon={<PlusOutlined />}
+              onClick={(e) => {
+                e.preventDefault();
+                onAdd(bm);
+              }}
+            />
+            <Button
+              icon={<DeleteOutlined />}
+              onClick={(e) => {
+                e.preventDefault();
+                onDel(bm.id);
+              }}
+            />
           </OptWrapper>
         </CardWrapper>
       </Content>
