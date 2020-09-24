@@ -1,31 +1,41 @@
 import React, { useCallback, useState } from "react";
 
-import { Select, Spin } from "antd";
+import { message, Select, Spin } from "antd";
 
 import Bookmark from "../../../services/bookmark";
 
 const { Option } = Select;
 
+type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
+
 const Search: React.FC = () => {
-  const [bookmarks, setBookmarks] = useState<
-    chrome.bookmarks.BookmarkTreeNode[]
-  >([]);
+  const [bookmarks, setBookmarks] = useState<BookmarkTreeNode[]>([]);
+  const [fetching, setFetching] = useState(false);
   const fetchBookmark = useCallback(async (str) => {
-    const res = await Bookmark.search(str);
-    console.log(res);
+    try {
+      setFetching(true);
+      const bms = await Bookmark.search(str);
+      setBookmarks((bms as BookmarkTreeNode[]).filter((bm) => bm.url));
+    } catch (e) {
+      message.error(e.message);
+    } finally {
+      setFetching(false);
+    }
   }, []);
-  const fetching = false;
-  console.log(setBookmarks);
+
+  const onOpen = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <Select
-      mode="multiple"
       labelInValue
       value={"ddff"}
       placeholder="Select users"
       notFoundContent={fetching ? <Spin size="small" /> : null}
       filterOption={false}
       onSearch={fetchBookmark}
-      onChange={fetchBookmark}
+      onChange={onOpen}
       style={{ width: "100%" }}
     >
       {bookmarks.map((bm) => (
