@@ -10,7 +10,7 @@ type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const Search: React.FC = () => {
   const [bookmarks, setBookmarks] = useState<BookmarkTreeNode[]>([]);
-  const [currentUrl, setCurrentUrl] = useState([]);
+  const [currentUrl, setCurrentUrl] = useState("");
   const [fetching, setFetching] = useState(false);
   const fetchBookmark = useCallback(async (str) => {
     try {
@@ -35,10 +35,12 @@ const Search: React.FC = () => {
     <Select
       autoFocus
       autoClearSearchValue
+      showSearch
       value={currentUrl}
       placeholder="Select users"
       notFoundContent={fetching ? <Spin size="small" /> : null}
       filterOption={false}
+      showArrow={false}
       onSearch={fetchBookmark}
       onChange={onOpen}
       style={{ width: "100%" }}
