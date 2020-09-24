@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { message, Select, Spin } from "antd";
 
@@ -25,10 +25,17 @@ const Search: React.FC = () => {
   }, []);
 
   const onOpen = (url) => {
-    console.log("====", url);
-
     setCurrentUrl(url);
     window.open(url, "_blank");
+  };
+
+  useEffect(() => {
+    document.addEventListener("keypress", handleKeypress);
+    return document.removeEventListener("keypress", handleKeypress);
+  });
+
+  const handleKeypress = (e) => {
+    console.log("===", e);
   };
 
   return (
