@@ -30,9 +30,12 @@ const Search: React.FC = () => {
   };
 
   useEffect(() => {
+    chrome.commands.onCommand.addListener(function (command) {
+      console.log("Command:", command);
+    });
     document.addEventListener("keypress", handleKeypress);
     return document.removeEventListener("keypress", handleKeypress);
-  });
+  }, []);
 
   const handleKeypress = (e) => {
     console.log("===", e);
