@@ -7,6 +7,8 @@ import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
 import { scrollIntoView } from "../../utils";
 
+import Search from "../components/Search";
+
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -157,6 +159,7 @@ const Home: React.FC = () => {
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+            <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
         </Layout>

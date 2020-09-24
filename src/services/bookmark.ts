@@ -5,7 +5,7 @@ class Bookmark {
 
   static getChildren = promisify(chrome.bookmarks.getChildren);
   static getSubTree = promisify(chrome.bookmarks.getSubTree);
-
+  static search = promisify(chrome.bookmarks.search);
   static createBookmark(obj: chrome.bookmarks.BookmarkCreateArg) {
     return new Promise((resolve, reject) => {
       chrome.bookmarks.create(obj, (result) => {
