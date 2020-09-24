@@ -34,7 +34,6 @@ const Search: React.FC = () => {
   return (
     <Select
       autoFocus
-      mode="multiple"
       autoClearSearchValue
       value={currentUrl}
       placeholder="Select users"
