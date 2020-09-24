@@ -10,8 +10,8 @@ const Search: React.FC = () => {
   const [bookmarks, setBookmarks] = useState<
     chrome.bookmarks.BookmarkTreeNode[]
   >([]);
-  const fetchBookmark = useCallback(async () => {
-    const res = await Bookmark.search();
+  const fetchBookmark = useCallback(async (str) => {
+    const res = await Bookmark.search(str);
     console.log(res);
   }, []);
   const fetching = false;
