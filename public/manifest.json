@@ -2,7 +2,13 @@
   "name": "iTab",
   "version": "1.0",
   "description": "help you manage your bookmark",
-  "permissions": ["bookmarks", "activeTab", "declarativeContent", "storage"],
+  "permissions": [
+    "bookmarks",
+    "commands",
+    "activeTab",
+    "declarativeContent",
+    "storage"
+  ],
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
