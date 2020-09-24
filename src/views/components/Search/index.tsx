@@ -32,6 +32,7 @@ const Search: React.FC = () => {
   return (
     <Select
       autoFocus
+      mode="multiple"
       value={currentUrl}
       placeholder="Select users"
       notFoundContent={fetching ? <Spin size="small" /> : null}
