@@ -29,17 +29,9 @@ const Search: React.FC = () => {
     window.open(url, "_blank");
   };
 
-  useEffect(() => {
-    chrome.commands.onCommand.addListener(function (command) {
-      console.log("Command:", command);
-    });
-    document.addEventListener("keypress", handleKeypress);
-    return document.removeEventListener("keypress", handleKeypress);
-  }, []);
-
-  const handleKeypress = (e) => {
-    console.log("===", e);
-  };
+  // const handleKeypress = (e) => {
+  //   console.log("===", e);
+  // };
 
   return (
     <Select
