@@ -17,15 +17,5 @@
     "128": "images/tab_128.png"
   },
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "commands": {
-    "search": {
-      "suggested_key": {
-        "default": "Ctrl+k",
-        "mac": "Command+k"
-      },
-      "description": "search a bookmark",
-      "global": true
-    }
-  }
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
