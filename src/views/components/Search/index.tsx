@@ -26,6 +26,7 @@ const Search: React.FC = () => {
 
   const onOpen = (url) => {
     setCurrentUrl(url);
+    console.log("--");
     window.open(url, "_blank");
   };
 
