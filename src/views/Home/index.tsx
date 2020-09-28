@@ -2,6 +2,8 @@ import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
 import { Card, Layout, Menu, message } from "antd";
 
+import bg from "../../assets/bg.png";
+
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
@@ -158,7 +160,13 @@ const Home: React.FC = () => {
           </div>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
-          <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+          <Content
+            style={{
+              margin: "24px 16px 0",
+              overflow: "initial",
+              backgroundImage: bg,
+            }}
+          >
             <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
