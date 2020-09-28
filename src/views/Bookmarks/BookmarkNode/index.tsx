@@ -51,7 +51,7 @@ const BookmarkNode: React.FC<{
     ev.preventDefault();
   };
 
-  const getTitleLevel = (level?: number): 1 | 2 | 3 | 4 | 5 => {
+  const getTitleLevel = (level?: number): any => {
     console.log("===", level);
     if (level) {
       return level > 3 ? 5 : Number(level) + 2;
@@ -60,7 +60,7 @@ const BookmarkNode: React.FC<{
     }
   };
 
-  const BottonSize = 49;
+  const buttonSize = 48;
 
   if (bm.url) {
     return (
@@ -81,7 +81,7 @@ const BookmarkNode: React.FC<{
             <Button
               icon={<PlusOutlined />}
               size="large"
-              style={{ width: BottonSize, height: BottonSize }}
+              style={{ width: buttonSize, height: buttonSize }}
               onClick={(e) => {
                 e.preventDefault();
                 onAdd(bm);
@@ -89,7 +89,7 @@ const BookmarkNode: React.FC<{
             />
             <Button
               icon={<DeleteOutlined />}
-              style={{ width: BottonSize, height: BottonSize }}
+              style={{ width: buttonSize, height: buttonSize }}
               size="large"
               onClick={(e) => {
                 e.preventDefault();
@@ -123,7 +123,7 @@ const BookmarkNode: React.FC<{
             <OptWrapper>
               <Button
                 icon={<PlusOutlined />}
-                style={{ width: BottonSize, height: BottonSize }}
+                style={{ width: buttonSize, height: buttonSize }}
                 size="large"
                 onClick={() => onAdd(bm)}
               />
