@@ -152,7 +152,7 @@ const Home: React.FC = () => {
         >
           <div className="flex items-center p-8">
             <img src={TabIcon} width={32} alt="图片" />
-            <div className="text-white">
+            <div className="text-white pl-1">
               <div>版本： {"v" + appInfo.version}</div>
               <div>链接： {total} 条</div>
             </div>
