@@ -2,8 +2,7 @@ import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
 import { Card, Layout, Menu, message } from "antd";
 
-import bg from "../../assets/bg.png";
-
+import TabIcon from "../../assets/tab_48.png";
 import Bookmark from "../../services/bookmark";
 import appInfo from "../../../package.json";
 import Bookmarks from "../Bookmarks";
@@ -148,18 +147,19 @@ const Home: React.FC = () => {
             height: "100vh",
             position: "fixed",
             left: 0,
-            paddingBottom: 100,
+            paddingTop: 100,
           }}
         >
+          <div className="flex items-center">
+            <img src={TabIcon} width={32} alt="图片" />
+            <div className="text-center">
+              <div>版本： {"v" + appInfo.version}</div>
+              <div>链接： {total} 条</div>
+            </div>
+          </div>
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
-          <div style={{ width: 200 }} className="fixed  bottom-0">
-            <Card className="text-center">
-              <div>版本： {"v" + appInfo.version}</div>
-              <div>链接： {total} 条</div>
-            </Card>
-          </div>
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
           <Content
