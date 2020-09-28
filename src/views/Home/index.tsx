@@ -166,7 +166,8 @@ const Home: React.FC = () => {
               overflow: "initial",
               backgroundImage: `url(${bg})`,
               backgroundAttachment: "fixed",
-              filter: "blur(1px)",
+              backgroundSize: "contain",
+              backdropFilter: "blur(10px)",
             }}
           >
             <Search />
