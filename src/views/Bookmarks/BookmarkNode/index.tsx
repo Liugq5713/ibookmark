@@ -106,7 +106,7 @@ const BookmarkNode: React.FC<{
             level={level!}
             className="flex w-full"
           >
-            <Title className="w-full" level={3}>
+            <Title className="w-full" level={level + 2}>
               {bm.title}
             </Title>
             <OptWrapper>
