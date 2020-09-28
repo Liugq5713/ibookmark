@@ -150,9 +150,9 @@ const Home: React.FC = () => {
             paddingTop: 100,
           }}
         >
-          <div className="flex items-center">
+          <div className="flex items-center p-8">
             <img src={TabIcon} width={32} alt="图片" />
-            <div className="text-center">
+            <div className="text-white">
               <div>版本： {"v" + appInfo.version}</div>
               <div>链接： {total} 条</div>
             </div>
