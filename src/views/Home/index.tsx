@@ -156,7 +156,7 @@ const Home: React.FC = () => {
               <div>链接： {total} 条</div>
             </div>
           </div>
-          <Divider />
+          <Divider className="my-2" />
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
