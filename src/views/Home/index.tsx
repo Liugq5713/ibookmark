@@ -10,6 +10,8 @@ import Bookmarks from "../Bookmarks";
 import { scrollIntoView } from "../../utils";
 
 import Search from "../components/Search";
+import styled from "styled-components";
+import { relative } from "path";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 const { Sider, Content } = Layout;
@@ -164,12 +166,10 @@ const Home: React.FC = () => {
             style={{
               margin: "24px 16px 0",
               overflow: "initial",
-              backgroundImage: `url(${bg})`,
-              backgroundAttachment: "fixed",
-              backgroundSize: "contain",
-              backdropFilter: "blur(10px)",
+              position: "relative",
             }}
           >
+            <BG />
             <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
@@ -180,3 +180,13 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+const BG = styled.div.attrs({
+  className: "inset-0",
+})`
+  background-image: ${bg};
+  background-attachment: "fixed";
+  background-size: "contain";
+  position: absolute;
+  filter: blur(4px);
+`;
