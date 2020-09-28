@@ -51,9 +51,13 @@ const BookmarkNode: React.FC<{
     ev.preventDefault();
   };
 
-  const getTitleLevel = (level) => {
+  const getTitleLevel = (level: number) => {
     console.log("===", level);
-    return level > 5 ? 5 : level;
+    if (level) {
+      return level > 3 ? 5 : Number(level) + 2;
+    } else {
+      return 5;
+    }
   };
 
   const BottonSize = 49;
@@ -113,7 +117,7 @@ const BookmarkNode: React.FC<{
             level={level!}
             className="flex w-full"
           >
-            <Title className="w-full" level={getTitleLevel(level! + 2)}>
+            <Title className="w-full" level={getTitleLevel(level!)}>
               {bm.title}
             </Title>
             <OptWrapper>
