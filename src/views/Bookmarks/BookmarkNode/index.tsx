@@ -105,7 +105,7 @@ const BookmarkNode: React.FC<{
             <Title className="w-full" level={3}>
               {bm.title}
             </Title>
-            <OptWrapper className="left-0 top-0">
+            <OptWrapper>
               <Button icon={<PlusOutlined />} onClick={() => onAdd(bm)} />
             </OptWrapper>
           </Header>
@@ -146,7 +146,9 @@ const Text = styled.a`
   text-overflow: ellipsis;
 `;
 
-const OptWrapper = styled.div`
+const OptWrapper = styled.div.attrs({
+  className: "left-0 top-0 pt-2 pr-2",
+})`
   display: none;
   position: absolute;
   ${Content}:hover & {
