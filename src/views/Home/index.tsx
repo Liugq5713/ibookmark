@@ -184,7 +184,7 @@ export default Home;
 const BG = styled.div.attrs({
   className: "inset-0",
 })`
-  background-image: ${bg};
+  background-image: url(${bg});
   background-attachment: "fixed";
   background-size: "contain";
   position: absolute;
