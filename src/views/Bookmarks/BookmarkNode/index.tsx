@@ -51,6 +51,10 @@ const BookmarkNode: React.FC<{
     ev.preventDefault();
   };
 
+  const getTitleLevel = (level) => {
+    return level > 5 ? 5 : level;
+  };
+
   if (bm.url) {
     return (
       <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
@@ -106,7 +110,7 @@ const BookmarkNode: React.FC<{
             level={level!}
             className="flex w-full"
           >
-            <Title className="w-full" level={level + 2}>
+            <Title className="w-full" level={getTitleLevel(level! + 2)}>
               {bm.title}
             </Title>
             <OptWrapper>
