@@ -167,6 +167,7 @@ const Home: React.FC = () => {
               backgroundImage: bg,
             }}
           >
+            <img src={bg} alt="test" />
             <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
