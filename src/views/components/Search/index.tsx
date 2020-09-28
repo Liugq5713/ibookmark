@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { message, Select, Spin } from "antd";
 
@@ -10,7 +10,7 @@ type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
 const Search: React.FC = () => {
   const [bookmarks, setBookmarks] = useState<BookmarkTreeNode[]>([]);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState();
   const [fetching, setFetching] = useState(false);
   const fetchBookmark = useCallback(async (str) => {
     try {
@@ -40,7 +40,7 @@ const Search: React.FC = () => {
       autoClearSearchValue
       showSearch
       value={currentUrl}
-      placeholder="Select users"
+      placeholder="动态查询书签"
       notFoundContent={fetching ? <Spin size="small" /> : null}
       filterOption={false}
       showArrow={false}
