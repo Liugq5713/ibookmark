@@ -66,7 +66,7 @@ const BookmarkNode: React.FC<{
               {bm.title || bm.url}
             </Text>
           </div>
-          <OptWrapper className="right-0 top-0">
+          <OptWrapper>
             <Button
               icon={<PlusOutlined />}
               onClick={(e) => {
@@ -147,10 +147,9 @@ const Text = styled.a`
 `;
 
 const OptWrapper = styled.div.attrs({
-  class: "left-0 top-0 pt-2 pr-2",
+  class: "left-0 top-0 pt-2 pr-2 absolute",
 })`
   display: none;
-  position: absolute;
   ${Content}:hover & {
     display: block;
   }
