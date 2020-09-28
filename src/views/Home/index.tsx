@@ -185,8 +185,9 @@ const BG = styled.div.attrs({
   className: "inset-0",
 })`
   background-image: url(${bg});
-  background-attachment: "fixed";
-  background-size: "contain";
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
   position: absolute;
   filter: blur(4px);
 `;
