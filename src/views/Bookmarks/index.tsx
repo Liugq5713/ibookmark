@@ -51,7 +51,7 @@ const Bookmarks: React.FC<Props> = ({ bookmarks }) => {
     return bookmarks.map((bm) =>
       bm.children ? (
         <ContentWrapper level={level}>
-          <BookmarkNode bm={bm} onAdd={onAdd}></BookmarkNode>
+          <BookmarkNode bm={bm} onAdd={onAdd} level={level}></BookmarkNode>
           {renderBookmarks(bm.children, level + 1)}
         </ContentWrapper>
       ) : (
