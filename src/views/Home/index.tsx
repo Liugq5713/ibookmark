@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 
-import { Card, Layout, Menu, message } from "antd";
+import { Card, Divider, Layout, Menu, message } from "antd";
 
 import TabIcon from "../../assets/tab_48.png";
 import Bookmark from "../../services/bookmark";
@@ -156,6 +156,7 @@ const Home: React.FC = () => {
               <div>链接： {total} 条</div>
             </div>
           </div>
+          <Divider />
           <Menu theme="dark" mode="inline">
             {renderMenu(sideItems)}
           </Menu>
