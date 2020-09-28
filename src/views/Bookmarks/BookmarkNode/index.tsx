@@ -70,6 +70,7 @@ const BookmarkNode: React.FC<{
             <Button
               icon={<PlusOutlined />}
               size="large"
+              style={{ width: 50, height: 50 }}
               onClick={(e) => {
                 e.preventDefault();
                 onAdd(bm);
@@ -77,6 +78,7 @@ const BookmarkNode: React.FC<{
             />
             <Button
               icon={<DeleteOutlined />}
+              style={{ width: 50, height: 50 }}
               size="large"
               onClick={(e) => {
                 e.preventDefault();
@@ -110,6 +112,7 @@ const BookmarkNode: React.FC<{
             <OptWrapper>
               <Button
                 icon={<PlusOutlined />}
+                style={{ width: 50, height: 50 }}
                 size="large"
                 onClick={() => onAdd(bm)}
               />
