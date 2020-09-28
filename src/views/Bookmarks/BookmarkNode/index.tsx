@@ -54,7 +54,7 @@ const BookmarkNode: React.FC<{
   const getTitleLevel = (level?: number): any => {
     console.log("===", level);
     if (level) {
-      return level > 3 ? 5 : Number(level) + 2;
+      return level > 3 ? 5 : Number(level) + 1;
     } else {
       return 5;
     }
@@ -112,11 +112,7 @@ const BookmarkNode: React.FC<{
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
         >
-          <Header
-            id={`${bm.title}_${bm.id}`}
-            level={level!}
-            className="flex w-full"
-          >
+          <Header id={`${bm.title}_${bm.id}`} className="flex w-full">
             <Title className="w-full" level={getTitleLevel(level)}>
               {bm.title}
             </Title>
@@ -145,13 +141,12 @@ export const CardWrapper = styled(Card)`
   }
 `;
 
-const Header = styled.div<{ level: number }>`
+const Header = styled.div`
   width: 100%;
   margin-top: 32px;
   position: relative;
   color: hsla(0, 0%, 100%, 0.85);
   font-weight: 500;
-  margin-left: ${(props) => props.level * 16}px;
 `;
 
 const Content = styled.div`
