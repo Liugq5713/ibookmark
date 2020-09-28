@@ -165,6 +165,8 @@ const Home: React.FC = () => {
               margin: "24px 16px 0",
               overflow: "initial",
               backgroundImage: `url(${bg})`,
+              backgroundAttachment: "fixed",
+              filter: "blur(1px)",
             }}
           >
             <Search />
