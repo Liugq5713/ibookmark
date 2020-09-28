@@ -164,10 +164,9 @@ const Home: React.FC = () => {
             style={{
               margin: "24px 16px 0",
               overflow: "initial",
-              backgroundImage: bg,
+              backgroundImage: `url(${bg})`,
             }}
           >
-            <img src={bg} alt="test" />
             <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
