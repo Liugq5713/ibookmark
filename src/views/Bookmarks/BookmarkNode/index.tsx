@@ -147,7 +147,7 @@ const Text = styled.a`
 `;
 
 const OptWrapper = styled.div.attrs({
-  class: "left-0 top-0 pt-2 pr-2 absolute",
+  className: "left-0 top-0 pt-2 pr-2 absolute",
 })`
   display: none;
   ${Content}:hover & {
