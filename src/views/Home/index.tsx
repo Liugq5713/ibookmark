@@ -169,7 +169,6 @@ const Home: React.FC = () => {
               position: "relative",
             }}
           >
-            <BG />
             <Search />
             <Bookmarks bookmarks={bookmarks} />
           </Content>
@@ -181,13 +180,13 @@ const Home: React.FC = () => {
 
 export default Home;
 
-const BG = styled.div.attrs({
-  className: "inset-0",
-})`
-  background-image: url(${bg});
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  filter: blur(4px);
-`;
+// const BG = styled.div.attrs({
+//   className: "inset-0",
+// })`
+//   background-image: url(${bg});
+//   background-attachment: fixed;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   position: absolute;
+//   filter: blur(4px);
+// `;
