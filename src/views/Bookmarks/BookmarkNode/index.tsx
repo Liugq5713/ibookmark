@@ -84,6 +84,7 @@ const BookmarkNode: React.FC<{
               style={{ width: buttonSize, height: buttonSize }}
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 onAdd(bm);
               }}
             />
@@ -92,6 +93,7 @@ const BookmarkNode: React.FC<{
               style={{ width: buttonSize, height: buttonSize }}
               size="large"
               onClick={(e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 onDel(bm.id);
               }}
