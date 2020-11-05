@@ -116,7 +116,7 @@ const BookmarkNode: React.FC<{
         >
           <Header id={`${bm.title}_${bm.id}`} className="flex w-full">
             <Title className="w-full" level={getTitleLevel(level)}>
-              {bm.title}
+              {bm.title} {bm?.children?.length}
             </Title>
             <OptWrapper>
               <Button
