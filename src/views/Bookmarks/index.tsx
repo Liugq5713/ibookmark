@@ -31,7 +31,6 @@ const Bookmarks: React.FC<Props> = ({ bookmarks }) => {
         ...values,
         parentId: parentNode?.id,
       });
-      console.log(res);
       message.success("增加成功");
       setVisible(false);
     } catch (e) {
