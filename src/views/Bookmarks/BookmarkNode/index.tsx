@@ -140,6 +140,7 @@ export default BookmarkNode;
 export const CardWrapper = styled(Card)`
   .ant-card-body {
     padding: 8px !important;
+	border-radius: 40px;
   }
 `;
 
