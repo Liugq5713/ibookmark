@@ -26,7 +26,7 @@ const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
       <Header id={`${bm.title}_${bm.id}`} className="flex w-full link-wrapper">
         <Title className="w-full link-title" level={getTitleLevel(level)}>
           <TitleLink>
-            {bm.title} <Title level={5}> {bm?.children?.length} </Title>
+            {bm.title} <span> {bm?.children?.length} </span>
           </TitleLink>
         </Title>
         <OptWrapper>
