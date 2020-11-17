@@ -71,7 +71,7 @@ const TitleLink = styled.div`
     content: " ";
     display: block;
     position: absolute;
-    top: 32px;
+    top: 28px;
     left: 0;
     border-right: 10px solid #193d61;
     border-bottom: 10px dashed transparent;
