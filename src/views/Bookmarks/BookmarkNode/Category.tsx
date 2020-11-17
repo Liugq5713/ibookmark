@@ -25,9 +25,9 @@ const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
     <>
       <Header id={`${bm.title}_${bm.id}`} className="flex w-full link-wrapper">
         <Title className="w-full link-title" level={getTitleLevel(level)}>
-          <span className="link-wrapper__title">
-            {bm.title} <Title level={8}> {bm?.children?.length} </Title>
-          </span>
+          <TitleLink>
+            {bm.title} <Title level={5}> {bm?.children?.length} </Title>
+          </TitleLink>
         </Title>
         <OptWrapper>
           <Button
@@ -53,6 +53,28 @@ const Header = styled.div`
   position: relative;
   color: hsla(0, 0%, 100%, 0.85);
   font-weight: 500;
+`;
+
+const TitleLink = styled.div`
+  z-index: 1;
+  display: inline-block;
+  position: relative;
+  left: -20px;
+  background: #409eff;
+  color: #fff;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 15px 4px 20px;
+
+  &::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    border-right: 10px solid #193d61;
+    border-bottom: 10px dashed transparent;
+  }
 `;
 
 const OptWrapper = styled.div.attrs({

@@ -19,27 +19,6 @@
   margin-top: 0px;
   color: #409eff;
 }
-.link-wrapper__title {
-  z-index: 1;
-  display: inline-block;
-  position: relative;
-  left: -20px;
-  background: #409eff;
-  color: #fff;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 15px 4px 20px;
-}
-
-.link-wrapper__title::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 32px;
-  left: 0;
-  border-right: 10px solid #193d61;
-  border-bottom: 10px dashed transparent;
-}
 
 .card {
   border: 1px solid #e6e8ec;
