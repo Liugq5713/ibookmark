@@ -48,6 +48,7 @@ const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
 export default Category;
 
 const Header = styled.div`
+  margin-left: -24px;
   width: 100%;
   margin-top: 32px;
   position: relative;
