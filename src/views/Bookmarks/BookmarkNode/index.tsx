@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Typography, Button, Card, message } from "antd";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Divider, Card, message } from "antd";
 import "./test.css";
-import FAvatar from "../../../components/FAvatar";
 import Bookmark from "../../../services/bookmark";
 
-const { Title } = Typography;
+import Category from "./Category";
+import Link from "./Link";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
@@ -52,15 +51,6 @@ const BookmarkNode: React.FC<{
     ev.preventDefault();
   };
 
-  const getTitleLevel = (level?: number): any => {
-    if (level) {
-      return level > 3 ? 5 : Number(level) + 1;
-    } else {
-      return 5;
-    }
-  };
-
-  const buttonSize = 48;
   //  具体的书签
   if (bm.url) {
     return (
@@ -69,36 +59,7 @@ const BookmarkNode: React.FC<{
           hoverable={true}
           onClick={() => window.open(bm.url, "_blank")}
         >
-          <div className="flex items-center">
-            <div>
-              <FAvatar className="position" src={bm.url} />
-            </div>
-            <Text className="ml-4" title={bm.url}>
-              {bm.title || bm.url}
-            </Text>
-          </div>
-          <OptWrapper>
-            <Button
-              icon={<PlusOutlined />}
-              size="large"
-              style={{ width: buttonSize, height: buttonSize }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onAdd(bm);
-              }}
-            />
-            <Button
-              icon={<DeleteOutlined />}
-              style={{ width: buttonSize, height: buttonSize }}
-              size="large"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                onDel(bm.id);
-              }}
-            />
-          </OptWrapper>
+          <Link bm={bm} onAdd={onAdd} onDel={onDel} />
         </CardWrapper>
       </Content>
     );
@@ -115,27 +76,7 @@ const BookmarkNode: React.FC<{
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
         >
-          <Header
-            id={`${bm.title}_${bm.id}`}
-            className="flex w-full link-wrapper"
-          >
-            <Title className="w-full link-title" level={getTitleLevel(level)}>
-              <span className="link-wrapper__title">
-                {bm.title} {bm?.children?.length}
-              </span>
-            </Title>
-            <OptWrapper>
-              <Button
-                icon={<PlusOutlined />}
-                style={{
-                  width: buttonSize,
-                  height: buttonSize,
-                }}
-                size="large"
-                onClick={() => onAdd(bm)}
-              />
-            </OptWrapper>
-          </Header>
+          <Category bm={bm} level={level} onAdd={onAdd} />
         </div>
         <Divider style={{ margin: "8px 0" }} />
       </>
@@ -153,34 +94,6 @@ export const CardWrapper = styled(Card)`
   }
 `;
 
-const Header = styled.div`
-  width: 100%;
-  margin-top: 32px;
-  position: relative;
-  color: hsla(0, 0%, 100%, 0.85);
-  font-weight: 500;
-`;
-
 const Content = styled.div`
   width: 320px;
-`;
-
-const Text = styled.a`
-  width: 100%;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const OptWrapper = styled.div.attrs({
-  className: "right-0 top-0 bottom-0 absolute h-full m-auto",
-})`
-  display: none;
-  ${Content}:hover & {
-    display: block;
-  }
-  ${Header}:hover & {
-    display: block;
-  }
 `;
