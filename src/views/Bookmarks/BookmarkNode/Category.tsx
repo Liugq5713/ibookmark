@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { Divider, Typography, Button } from "antd";
+import { Typography, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
@@ -26,7 +26,7 @@ const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
       <Header id={`${bm.title}_${bm.id}`} className="flex w-full link-wrapper">
         <Title className="w-full link-title" level={getTitleLevel(level)}>
           <span className="link-wrapper__title">
-            {bm.title} {bm?.children?.length}
+            {bm.title} <Title level={8}> {bm?.children?.length} </Title>
           </span>
         </Title>
         <OptWrapper>
@@ -41,7 +41,6 @@ const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
           />
         </OptWrapper>
       </Header>
-      <Divider style={{ margin: "8px 0" }} />
     </>
   );
 };
