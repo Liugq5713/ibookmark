@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Divider, Card, message } from "antd";
+import { Card, message } from "antd";
 import "./test.css";
 import Bookmark from "../../../services/bookmark";
 
@@ -78,7 +78,6 @@ const BookmarkNode: React.FC<{
         >
           <Category bm={bm} level={level} onAdd={onAdd} />
         </div>
-        <Divider style={{ margin: "8px 0" }} />
       </>
     );
   }
