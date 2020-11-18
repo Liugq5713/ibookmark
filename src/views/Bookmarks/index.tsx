@@ -96,7 +96,7 @@ export default Bookmarks;
 const ContentWrapper = styled.div.attrs({
   className: "w-full",
 })<{ level: number }>`
-  margin-left: ${(props) => Math.floor(props.level / 2) * 16}px;
+  margin-left: ${(props) => Math.floor(props.level/2 + 1) * 16}px;
   margin-bottom: 32px;
   display: flex;
   flex-wrap: wrap;

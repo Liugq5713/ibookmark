@@ -70,7 +70,7 @@ const BookmarkNode: React.FC<{
     return (
       <>
         <div
-          className="w-full"
+          className="w-full ml-4"
           onDrop={(e) => onDrop(e, bm)}
           onDragEnter={onDragEnter}
           onDragLeave={onDragLeave}
