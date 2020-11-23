@@ -54,14 +54,14 @@ const BookmarkNode: React.FC<{
   //  具体的书签
   if (bm.url) {
     return (
-      <Content draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
+      <div draggable={true} onDragStart={(e) => onDragStart(e, bm)}>
         <CardWrapper
           hoverable={true}
           onClick={() => window.open(bm.url, "_blank")}
         >
           <Link bm={bm} onAdd={onAdd} onDel={onDel} />
         </CardWrapper>
-      </Content>
+      </div>
     );
   }
 
@@ -94,6 +94,3 @@ export const CardWrapper = styled(Card)`
   }
 `;
 
-const Content = styled.div`
-  width: 320px;
-`;

@@ -18,7 +18,7 @@ const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
     <Content>
       <div className="flex items-center">
         <div>
-          <FAvatar className="position" src={bm?.url || ""} />
+          <FAvatar size='small' className="position" src={bm?.url || ""} />
         </div>
         <Text className="ml-4" title={bm.url}>
           {bm.title || bm.url}
