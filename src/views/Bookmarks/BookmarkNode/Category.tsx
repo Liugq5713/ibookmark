@@ -15,7 +15,7 @@ type Props = {
 const Category: React.FC<Props> = ({ bm, level, onAdd }) => {
   const getTitleLevel = (level?: number): any => {
     if (level) {
-      return level > 3 ? 5 : Number(level) + 1;
+      return level > 3 ? 5 : Number(level) + 2;
     } else {
       return 5;
     }
