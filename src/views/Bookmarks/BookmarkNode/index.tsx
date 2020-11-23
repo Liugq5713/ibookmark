@@ -87,10 +87,10 @@ const BookmarkNode: React.FC<{
 export default BookmarkNode;
 
 export const CardWrapper = styled(Card)`
-width:300px;
   border-radius: 40px;
+  width:240px;
   .ant-card-body {
-    padding: 8px !important;
+    padding: 4px !important;
   }
 `;
 
