@@ -9,7 +9,7 @@ import * as myTheme from "./theme";
 function App() {
   return (
     <ConfigProvider>
-      <ThemeProvider theme={myTheme["ms"]}>
+      <ThemeProvider theme={myTheme["sm"]}>
         <div className="App">
           <Home />
         </div>
