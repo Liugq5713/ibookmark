@@ -88,9 +88,8 @@ export default BookmarkNode;
 
 export const CardWrapper = styled(Card)`
   border-radius: 40px;
-  width:240px;
+  width: ${(props) => props.theme.cart_width};
   .ant-card-body {
     padding: 4px !important;
   }
 `;
-
