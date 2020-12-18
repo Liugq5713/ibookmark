@@ -1,11 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-
+import styled, { useTheme } from "styled-components";
 import { Button } from "antd";
-import FAvatar from "../../../components/FAvatar";
-
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-const buttonSize = 48;
+
+import FAvatar from "../../../components/FAvatar";
 
 type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 type Props = {
@@ -14,11 +12,13 @@ type Props = {
   onDel: any;
 };
 const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
+  const theme = useTheme();
+  const { button_size } = theme;
   return (
     <Content>
       <div className="flex items-center">
         <div>
-          <FAvatar size='small' className="position" src={bm?.url || ""} />
+          <FAvatar size="small" className="position" src={bm?.url || ""} />
         </div>
         <Text className="ml-4" title={bm.url}>
           {bm.title || bm.url}
@@ -28,7 +28,7 @@ const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
         <Button
           icon={<PlusOutlined />}
           size="large"
-          style={{ width: buttonSize, height: buttonSize }}
+          style={{ width: button_size, height: button_size }}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -37,7 +37,7 @@ const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
         />
         <Button
           icon={<DeleteOutlined />}
-          style={{ width: buttonSize, height: buttonSize }}
+          style={{ width: button_size, height: button_size }}
           size="large"
           onClick={(e) => {
             e.stopPropagation();
