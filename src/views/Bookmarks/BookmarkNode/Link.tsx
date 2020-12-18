@@ -27,7 +27,6 @@ const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
       <OptWrapper>
         <Button
           icon={<PlusOutlined />}
-          size="large"
           style={{ width: button_size, height: button_size }}
           onClick={(e) => {
             e.preventDefault();
@@ -38,7 +37,6 @@ const Link: React.FC<Props> = ({ bm, onAdd, onDel }) => {
         <Button
           icon={<DeleteOutlined />}
           style={{ width: button_size, height: button_size }}
-          size="large"
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
