@@ -88,7 +88,7 @@ export default BookmarkNode;
 
 export const CardWrapper = styled(Card)`
   border-radius: 40px;
-  width: ${(props) => props.theme.cart_width};
+  width: ${(props) => props.theme.card_width}px;
   .ant-card-body {
     padding: 4px !important;
   }

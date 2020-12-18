@@ -4,6 +4,6 @@ import "styled-components";
 // and extend them!
 declare module "styled-components" {
   export interface DefaultTheme {
-    cart_width: number;
+    card_width: number;
   }
 }
