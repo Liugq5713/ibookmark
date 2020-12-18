@@ -8,6 +8,5 @@ const md: DefaultTheme = {
   card_width: 100,
   button_size: 30,
 };
-};
 
 export { sm, md };
