@@ -5,6 +5,6 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     card_width: number;
-    button_size: number;
+    button_size?: number;
   }
 }

@@ -6,9 +6,8 @@ const sm: DefaultTheme = {
 };
 const md: DefaultTheme = {
   card_width: 100,
+  button_size: 30,
 };
-const lg: DefaultTheme = {
-  card_width: 100,
 };
 
-export { sm, md, lg };
+export { sm, md };
